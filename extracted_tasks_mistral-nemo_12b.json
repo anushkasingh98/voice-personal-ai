@@ -1,0 +1,47 @@
+{
+  "total_tasks": 7,
+  "tasks": [
+    {
+      "speaker": "Anushka",
+      "task_description": "Show Maureen our process flow",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send samples of modernization process flow",
+      "deadline": "later this week",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send write-up on recent modernization project",
+      "deadline": "later this week",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Create structure for unit tests to validate COBOL and C-sharp code scenarios, including negative and positive cases.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Document modern code and architectural support for moving databases and services.",
+      "deadline": null,
+      "priority": "Low"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send a write-up on the modernization process done so far to Maureen.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send Maureen the case study for the healthcare system's insurance calculator by the end of two days.",
+      "deadline": "2 days after the meeting",
+      "priority": "Medium"
+    }
+  ]
+}

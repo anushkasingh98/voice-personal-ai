@@ -1,0 +1,59 @@
+{
+  "total_tasks": 9,
+  "tasks": [
+    {
+      "speaker": "Maureen",
+      "task_description": "Send use cases or business cases for the AI-driven model for review.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send samples/write-up on the modernization process flow that was done in the last couple of weeks.",
+      "deadline": "Later this week",
+      "priority": "High"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send a little bit of a write-up on what they have done.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send a write-up on what they have done (regarding the modernization process).",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Maureen",
+      "task_description": "Share the information received with her team and reach out if it is applicable.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send the case study that is being written up for a healthcare system.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send the information for the case study (specifically mentioning it's an insurance calculator) in the next two days.",
+      "deadline": "next two days",
+      "priority": "High"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Send a one-slide summary about her company (how long they've been around, where they're based, etc.).",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Maureen",
+      "task_description": "Watch for the email from Anushka.",
+      "deadline": null,
+      "priority": "Medium"
+    }
+  ]
+}
