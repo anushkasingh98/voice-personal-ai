@@ -5,8 +5,8 @@ import time
 from pathlib import Path
 
 st.set_page_config(
-    page_title="VoiceAI — Meeting Intelligence",
-    page_icon="🎙️",
+    page_title="LooqBaq — Meeting Intelligence",
+    page_icon="🔍",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -177,7 +177,7 @@ label, .stSlider label { color: #374151 !important; }
 
 # ── Sidebar nav ──────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 🎙️ VoiceAI")
+    st.markdown("## 🔍 LooqBaq")
     st.markdown("<div style='color:#9095b8;font-size:0.8rem;margin-bottom:24px;'>Meeting Intelligence</div>", unsafe_allow_html=True)
     page = st.radio("", ["🏠  Home — Upload Recording", "📊  Analytics — Test Run"], label_visibility="collapsed")
     st.markdown("<hr style='border-color:#e2e4ec;margin:24px 0'>", unsafe_allow_html=True)
@@ -189,8 +189,8 @@ with st.sidebar:
 if "Home" in page:
     st.markdown("""
     <div class="hero">
-        <h1>🎙️ Upload a Recording</h1>
-        <p>Transcribe, diarize, and extract action items from any meeting recording.</p>
+        <h1>🔍 LooqBaq</h1>
+        <p>Transcribe, diarize, and extract action items from any meeting recording — fully local, fully private.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -291,7 +291,7 @@ if "Home" in page:
 else:
     st.markdown("""
     <div class="hero">
-        <h1>📊 Analytics Dashboard</h1>
+        <h1>📊 LooqBaq Analytics</h1>
         <p>Results from the test recording — Maureen discovery call · Jan 19, 2026</p>
     </div>
     """, unsafe_allow_html=True)
@@ -474,4 +474,4 @@ else:
         </div>""", unsafe_allow_html=True)
 
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
-    st.markdown("<div style='text-align:center;color:#b0b4cc;font-size:0.8rem'>VoiceAI · Built with Faster-Whisper, Pyannote, and Ollama · Kathalyst</div>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align:center;color:#b0b4cc;font-size:0.8rem'>LooqBaq · Built with Faster-Whisper, Pyannote, and Ollama · Kathalyst</div>", unsafe_allow_html=True)
