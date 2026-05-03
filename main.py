@@ -63,3 +63,49 @@ for segment in segments:
             speaker = speaker_label
             
     print(f"[{segment.start:05.2f}s - {segment.end:05.2f}s] {speaker}: {segment.text.strip()}")
+
+# ... (Keep your existing initialization and processing code) ...
+
+# 4. Alignment and Speaker Naming Logic
+print("\n--- Processing Transcript ---\n")
+
+segments = list(segments)
+full_transcript_data = []
+unique_speakers = set()
+
+# Process all segments and identify unique speakers
+for segment in segments:
+    speaker = "UNKNOWN"
+    max_overlap = 0
+    for turn, _, speaker_label in diarization.speaker_diarization.itertracks(yield_label=True):
+        overlap = min(segment.end, turn.end) - max(segment.start, turn.start)
+        if overlap > max_overlap:
+            max_overlap = overlap
+            speaker = speaker_label
+    
+    full_transcript_data.append((segment.start, segment.end, speaker, segment.text.strip()))
+    unique_speakers.add(speaker)
+
+# 5. Display first 3 minutes (180 seconds)
+print("--- Preview (First 3 Minutes) ---")
+for start, end, speaker, text in full_transcript_data:
+    if start > 180:
+        break
+    print(f"[{start:05.2f}s - {end:05.2f}s] {speaker}: {text}")
+
+# 6. User Input for Speaker Names
+print("\n--- Name the Speakers ---")
+speaker_map = {}
+for speaker_id in sorted(list(unique_speakers)):
+    name = input(f"Enter name for {speaker_id}: ")
+    speaker_map[speaker_id] = name
+
+# 7. Save to Text File
+output_file = "transcript.txt"
+with open(output_file, "w") as f:
+    for start, end, speaker_id, text in full_transcript_data:
+        real_name = speaker_map.get(speaker_id, speaker_id)
+        line = f"[{start:05.2f}s - {end:05.2f}s] {real_name}: {text}\n"
+        f.write(line)
+
+print(f"\n--- Transcript saved to {output_file} ---")

@@ -1,0 +1,163 @@
+[00.00s - 02.00s] Anushka: Hello, how are you?
+[02.00s - 04.00s] Anushka: I'm doing well, how are you doing?
+[04.00s - 06.00s] Maureen: I'm doing very well, thank you.
+[06.00s - 12.00s] Anushka: Just before we get started, do you mind if I have my note-taker on the call?
+[12.00s - 14.00s] Maureen: Yeah, it's okay, that's no problem.
+[14.00s - 15.00s] Anushka: Okay.
+[15.00s - 17.00s] Anushka: Thank you.
+[17.00s - 20.00s] Anushka: Well, it's really nice to meet you.
+[20.00s - 23.00s] Anushka: My name is Anishka and the founder of Catalyst.
+[23.00s - 26.00s] Anushka: We'd love to know how I can help you out.
+[26.00s - 28.00s] Maureen: Yeah, sure.
+[28.00s - 33.86s] Maureen: So I'm the chief technology officer at Payworks, okay.
+[33.86s - 39.64s] Maureen: And one of the things that we're exploring right now is modernizing some legacy code that we have.
+[39.64s - 41.74s] Maureen: It's a computational engine, basically.
+[42.66s - 47.36s] Maureen: And it's written in a very, very old language called Cobal.
+[47.36s - 48.36s] Maureen: Okay.
+[48.36s - 54.20s] Maureen: And so we've we've had discussions with a few different vendors, most of which take a very
+[54.20s - 56.24s] Maureen: deterministic approach to it, right?
+[56.24s - 57.96s] Maureen: Like transpilot.
+[58.00s - 59.64s] Maureen: and then do the re-factor.
+[59.98s - 67.20s] Maureen: And so the reason why I reached out into your website was because you advertise an AI-driven model.
+[68.40s - 71.96s] Maureen: And so, you know, we're really exploring approaches.
+[72.74s - 77.96s] Maureen: Yes, I could take a transpile approach, and I'd still end up with this big monolithic piece of code.
+[78.12s - 82.22s] Maureen: Yes, do I have more people in the organization that understand how to support it?
+[82.62s - 86.86s] Maureen: But the expert who writes it today in the old language, who's very comfortable in that,
+[86.86s - 91.06s] Maureen: would still need to rely on that person to understand what the code does.
+[92.70s - 98.82s] Maureen: And so what I'm wondering is a little bit more about the AI-driven model, the time it takes,
+[99.14s - 105.24s] Maureen: how you ensure accuracy, and do you have any, you know, use cases or business cases that you
+[105.24s - 107.34s] Maureen: could send me to read through so that I could understand?
+[107.48s - 111.94s] Maureen: In terms of magnitude, it's less than 50,000 lines of code.
+[113.06s - 113.32s] Speaker: Okay.
+[114.08s - 114.64s] Speaker: Okay.
+[114.64s - 118.12s] Speaker: Okay. That is strange.
+[120.12s - 127.08s] Anushka: If you don't mind me asking, are you trying to move from COBOL to Java or some other? Do you have that?
+[127.08s - 129.10s] Anushka: Not to Java? To C-sharp.
+[130.32s - 132.82s] Anushka: Okay. Kow-to-to-C-sharp. Okay. Yeah.
+[134.20s - 140.42s] Anushka: And I'm assuming do you have, like, cobalt engineers within your team, C-sharp engineers within your team?
+[141.22s - 143.92s] Anushka: Or is it? Okay.
+[144.64s - 145.08s] Anushka: All right.
+[146.34s - 153.76s] Anushka: So the reason I ask is because, so our approach, and I'll show you in a little bit, we do focus a lot on
+[153.76s - 159.22s] Anushka: documenting and knowledge transfer to maintain it long term because that's, I mean, if you can't,
+[159.28s - 162.66s] Anushka: if you don't have engineers maintaining it, it's almost like you don't have the software.
+[162.96s - 167.52s] Maureen: Like, it's, it's, it's, it's, it's, it's, I end up with the same challenge on the other side of this,
+[167.52s - 169.76s] Maureen: if no one understands it on, at the other side. Yeah.
+[170.44s - 174.32s] Anushka: Yeah, yeah. So that's why I asked about both, and like, do you have engineers and both sides.
+[174.64s - 177.48s] Anushka: you know, what level of support and things like that.
+[177.58s - 177.74s] Anushka: Okay.
+[179.84s - 189.20s] Anushka: Just, so, okay, let me just show you a little bit of, this is our, okay, if I can get my screens here to work.
+[194.30s - 195.10s] Speaker: Just a minute.
+[195.88s - 198.60s] Speaker: But this is a kind of the process flow that we follow.
+[199.32s - 203.58s] Anushka: We have some samples which I can send you a little later on.
+[203.58s - 204.62s] Anushka: They're actually putting to the process flow that we follow.
+[204.64s - 211.76s] Anushka: a write-up on a modernization that we did in the last couple of weeks. So
+[211.76s - 217.10s] Anushka: once that is up later this week, I'll send you that. But this is kind of the flow that we follow.
+[217.94s - 224.68s] Anushka: We start out, I mean, we take the code. We first document the Kubal code, primarily just because
+[224.68s - 229.98s] Anushka: a lot of times we have found that customers also don't know everything that's in there. So
+[229.98s - 234.62s] Anushka: giving them a little bit of view of what all is there. We actually even create like a nice
+[234.64s - 239.16s] Anushka: visual diagrams. They are able to play around with it. That's normally when we request that,
+[239.24s - 243.66s] Anushka: you know, if you want to remove anything, if you want to like change something, you highlight those
+[243.66s - 249.78s] Anushka: early on so that we can take that into account and we do the modernization. Our code conversion
+[249.78s - 257.46s] Anushka: does use AI heavily, but we do have, well, the first half is deterministic. So what we essentially
+[257.46s - 264.10s] Anushka: do is we get the bone structures of the code base, of the COBOL code base. We figure out where each
+[264.10s - 269.80s] Anushka: functionality decides and how it's all interacting together. And then we try and maintain that
+[269.80s - 278.48s] Anushka: sequence. Because if you, as you might know, kubal is a very sequential algorithm. It, it does everything
+[278.48s - 284.02s] Anushka: one after the other and in very quick succession. But if you take that and you put it into like
+[284.02s - 290.50s] Anushka: a like a Python or a Java or even a C sharp, C sharp will actually be faster, but Java and
+[290.50s - 296.32s] Anushka: Python are not quite that fast. And especially, you know, people come to us, like,
+[296.34s - 301.52s] Anushka: they want to do a multi-threaded model and you need to keep that sequence in mind when you do a
+[301.52s - 308.26s] Anushka: multi-fired model. So we kind of keep that barebone structure in mind and then we do like a
+[308.26s - 316.72s] Anushka: grouping, which is basically to figure out which programs like contextually go together. And then
+[316.72s - 320.48s] Anushka: those go into like one class and one, you know, micro-curvis.
+[320.50s - 326.98s] Maureen: So you create it into a modern, you know, code architecture at the end of the day.
+[327.04s - 330.64s] Maureen: So question for you. It says Java and Python all over here. Do you do C-sharp?
+[330.96s - 334.38s] Maureen: Do we have to convert it to Java first and then C-sharp? Because I've seen some of that,
+[334.44s - 341.02s] Anushka: and we don't want to do that. Yeah. We have not done C-sharp before. Most of our requests have been
+[341.02s - 346.62s] Anushka: for Java. And I have put in Python because I personally do not think Java is a good option for
+[346.62s - 350.24s] Anushka: everything that resides in Coval. I think for some things.
+[350.50s - 356.86s] Anushka: Python is more suited. That being said, we could work with you in figuring out because
+[356.86s - 364.48s] Anushka: it is AI-driven, the language is very malleable. The part that is going to change is going
+[364.48s - 370.06s] Anushka: to be the testing. Yes. So that we'd have to work a little bit more in creating the proper
+[370.06s - 375.14s] Anushka: structure for the unit tests, creating the proper scenario so that we can validate from
+[375.14s - 380.48s] Anushka: the COBOL and the, you know, C-sharp end on everything that's, you know, you know,
+[380.50s - 386.12s] Anushka: basically we want to make sure every scenario is accounted for, and there is no scenario
+[386.12s - 390.38s] Anushka: that happens in the modern code that does not happen in the legacy code, right?
+[390.68s - 396.56s] Anushka: The negative and the positive. So that we would need to work on a little bit, and then the documentation
+[396.56s - 401.62s] Anushka: part is already built. We document any language, that's fine. So we can document the modern
+[401.62s - 408.04s] Anushka: code. And then architectural support that goes into, like, if you want to move databases and services
+[408.04s - 410.48s] Anushka: and things like that, which we don't have to go.
+[410.50s - 417.80s] Anushka: get into right now. But yeah, this is a little bit of what kind of we follow. I can send you a
+[417.80s - 422.36s] Anushka: little bit of a write-up on what we have done and- Sure, that would be helpful for me to see that
+[422.36s - 429.36s] Maureen: kind of like magnitude, what language you converted it into. For us, it's computational, so it needs to be
+[429.36s - 436.78s] Maureen: extremely accurate. Just like think banking industry, extremely accurate, very efficient, and perform
+[436.78s - 438.34s] Maureen: it. Okay.
+[438.34s - 444.66s] Anushka: If you don't mind me asking, is there any way that you all test for accuracy right now?
+[444.74s - 447.34s] Anushka: Like your kubal, do you have any kind of scenario mapping?
+[447.34s - 451.28s] Maureen: Yeah, we do A-B testing. So when we create new features, we do A-B testing.
+[452.12s - 459.72s] Maureen: We've been pulling part portions of our code out of the main engine that doesn't belong there.
+[459.92s - 462.26s] Maureen: And then we run parallel testing and production, actually.
+[462.40s - 468.26s] Maureen: We run production against the existing thing and the new thing, and we make sure that we do that
+[468.34s - 471.40s] Maureen: and it matches. I think if we did the whole thing, of course, we'd have to create more
+[471.40s - 475.34s] Maureen: test cases and things like that, but we already do A-B testing today.
+[475.82s - 480.58s] Anushka: Okay, got it. And is this the first time you all are doing a modernization? Have you done
+[480.58s - 485.84s] Maureen: any other part of the system? Okay, first thing. I mean, we've picked it, we picked away at it over time,
+[485.88s - 491.32s] Maureen: but this is about getting it done really quickly. My biggest concern for it is because of
+[491.32s - 496.86s] Maureen: the precision that is so important. Getting it converted, getting it converted into something
+[496.86s - 501.14s] Maureen: that can be supported by more than a couple people and accuracy.
+[501.64s - 508.14s] Maureen: And so the testing, the length of testing over time, we've got to do that right.
+[508.52s - 508.64s] Anushka: Yeah.
+[509.12s - 510.74s] Maureen: You've got to do that right. Yeah, that's fair.
+[511.12s - 515.60s] Anushka: And if you don't mind me asking, what's the urgency level that your company has on this project?
+[515.72s - 516.56s] Anushka: Do you have a deadline?
+[516.62s - 517.70s] Anushka: I want it done yesterday.
+[518.58s - 519.86s] Maureen: I want it done yesterday.
+[520.60s - 521.08s] Maureen: Okay.
+[521.42s - 523.64s] Maureen: I want it done within the next year.
+[524.78s - 525.58s] Maureen: Got it.
+[525.58s - 526.14s] Anushka: Got it.
+[526.34s - 527.66s] Maureen: Like in production, yeah.
+[528.18s - 529.32s] Maureen: Which I think is doable.
+[529.66s - 534.46s] Maureen: When I look around and do some research, lots of other organization have hundreds of thousands
+[534.46s - 538.92s] Maureen: of lines of code and millions of lines were under 50,000, right?
+[538.92s - 541.58s] Maureen: So, you know, they've all done it.
+[541.70s - 542.94s] Maureen: Yeah.
+[543.24s - 543.48s] Maureen: Yeah.
+[543.90s - 544.08s] Anushka: Yeah.
+[544.08s - 548.64s] Anushka: Yeah, I was, 50,000 is very much doable in production as well.
+[548.90s - 549.28s] Anushka: Yeah.
+[549.46s - 549.64s] Maureen: Yeah.
+[550.02s - 550.30s] Maureen: Okay.
+[550.50s - 550.70s] Maureen: Yeah.
+[550.76s - 553.24s] Maureen: So I'd be interested in seeing a little bit more information.
+[553.24s - 555.56s] Maureen: If you case studies that are kind of similar to.
+[555.58s - 560.78s] Maureen: you know, high precision required short turnaround, but also getting to a place where
+[560.78s - 562.16s] Maureen: it's sustainable and supportable.
+[562.64s - 566.82s] Maureen: And then we'll see from there, I'll share it with my team and reach out if it's applicable.
+[566.98s - 567.68s] Maureen: That would be super helpful.
+[568.88s - 569.04s] Anushka: Yeah.
+[569.20s - 570.40s] Anushka: Let me do that.
+[571.40s - 575.82s] Anushka: I'll send you the case study that we're writing up for our, it's a healthcare system.
+[576.28s - 579.90s] Anushka: So not quite a computational engine, but it's an insurance calculator.
+[580.54s - 582.10s] Anushka: So it has to be accurate.
+[582.44s - 582.70s] Anushka: Yes.
+[582.70s - 584.54s] Anushka: Because, you know, it's, you're calculated.
+[584.74s - 585.10s] Anushka: So, yeah.
+[585.10s - 588.64s] Anushka: I'll send you the information for that in the next two days.
+[589.14s - 595.62s] Maureen: And, yeah, and then you have like a one slide about your company, you know, how long you've been around, where you're based, all of those sorts of things.
+[595.68s - 596.30s] Maureen: That would be helpful to you.
+[596.62s - 596.90s] Maureen: Please.
+[597.48s - 598.58s] Maureen: Yeah, I can do so much.
+[599.06s - 599.38s] Maureen: Excellent.
+[599.64s - 599.84s] Maureen: Yes.
+[599.92s - 600.16s] Maureen: Okay.
+[600.46s - 601.24s] Maureen: Well, thank you so much.
+[601.28s - 603.52s] Maureen: I'm so glad that we're able to connect really quickly.
+[604.16s - 605.74s] Maureen: And I'll watch for your email.
+[606.74s - 607.10s] Maureen: Yes.
+[607.20s - 607.68s] Anushka: Thank you.
+[607.74s - 609.72s] Anushka: If you need anything else for me, please let me know.
+[610.44s - 612.38s] Anushka: And you have my email through this invite.
+[612.96s - 613.34s] Speaker: Okay.
+[613.34s - 614.18s] Speaker: Thank you so much.
+[614.50s - 614.68s] Speaker: Bye.
+[615.10s - 616.78s] Speaker: Thank you. Take care. Bye.

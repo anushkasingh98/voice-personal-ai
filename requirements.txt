@@ -3,3 +3,5 @@ pyannote.audio
 torch
 torchaudio
 torchvision
+ollama
+pydantic
