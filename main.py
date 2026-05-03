@@ -12,9 +12,8 @@ print("--- Setting up ---\n\n")
 local_model_path = "/Users/anushkasingh/Desktop/Code/Sundai/voice_may3_26/local_pyannote_model/config.yaml"
 
 # Load from disk - no internet required!
+# pipeline = Pipeline.from_pretrained(local_model_path, token=HF_TOKEN)
 pipeline = Pipeline.from_pretrained(local_model_path)
-
-
 
 # Move to M1 Mac GPU (MPS)
 
@@ -45,7 +44,9 @@ segments, _ = whisper_model.transcribe(video_path, beam_size=5)
 
 # 4. Alignment Logic
 print("\n--- Final Transcript ---\n")
+
 segments = list(segments) # Buffer segments to align
+print(segments)
 
 for segment in segments:
     # Find the speaker who was talking during this whisper segment's time
@@ -54,7 +55,7 @@ for segment in segments:
     max_overlap = 0
     
     # Check Pyannote's timeline for this specific segment's start/end
-    for turn, _, speaker_label in diarization.itertracks(yield_label=True):
+    for turn, _, speaker_label in diarization.speaker_diarization.itertracks(yield_label=True):
         # Calculate overlap between whisper segment and pyannote turn
         overlap = min(segment.end, turn.end) - max(segment.start, turn.start)
         if overlap > max_overlap:
@@ -62,35 +63,3 @@ for segment in segments:
             speaker = speaker_label
             
     print(f"[{segment.start:05.2f}s - {segment.end:05.2f}s] {speaker}: {segment.text.strip()}")
-
-# # Run as usual
-# diarization = pipeline("your_video.mp4")
-
-# # Options: "tiny", "base", "small", "medium", "large-v3", "distil-large-v3"
-# model_size = "large-v3-turbo"
-# device_ = "cpu"
-# compute_type_ = "int8"  # Use "int8" for older hardware, "float16" for newer GPUs
-
-# # Run on GPU with FP16 precision, or "cpu" with "int8" for older hardware
-# model = WhisperModel(model_size, device=device_, compute_type=compute_type_)
-
-# video_path = "/Users/anushkasingh/Desktop/Code/Sundai/voice_may3_26/voice-personal-ai/test-recordings/Maureen - Jan 19 2026.mp4"
-
-# if not os.path.exists(video_path):
-#     print(f"Error: Could not find {video_path}")
-# else:
-#     print(f"--- Transcribing: {video_path} ---")
-    
-#     # transcribe() handles .mp4, .mkv, .mov etc. automatically via ffmpeg
-#     segments, info = model.transcribe(
-#         video_path, 
-#         beam_size=5,
-#         vad_filter=True, # Recommended: Removes silent gaps to prevent hallucinations
-#         word_timestamps=True # Optional: gives you timing for every single word
-#     )
-
-#     print(f"Detected Language: {info.language} (Probability: {info.language_probability:.2f})")
-
-#     # 3. Process the output
-#     for segment in segments:
-#         print(f"[{segment.start:>6.2f}s -> {segment.end:>6.2f}s] {segment.text}")
