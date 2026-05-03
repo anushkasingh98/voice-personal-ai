@@ -4,6 +4,7 @@ import os
 import math
 from pydantic import BaseModel, Field
 from typing import List, Optional
+import re
 
 # --- SCHEMA DEFINITION ---
 class Task(BaseModel):
@@ -16,7 +17,7 @@ class MeetingExtraction(BaseModel):
     tasks: List[Task]
 
 # --- CONFIGURATION ---
-MODELS = ["gemma4:26b", "qwen3.6:35b", "mistral-small:24b"]
+MODELS = ["qwen3.6:35b", "mistral-small:24b", "gemma4:26b"]
 TRANSCRIPT_PATH = "/Users/anushkasingh/Desktop/Code/Sundai/voice_may3_26/voice-personal-ai/transcript.txt"
 CHUNK_SIZE_WORDS = 1500  # Approx 6-8 minutes of speech
 OVERLAP_WORDS = 200      # 20% overlap to catch context across splits
@@ -26,14 +27,13 @@ OVERLAP_LINES = 10     # Number of lines to repeat from the previous chunk
 PROMPT_TEMPLATE = """
 You are a project manager. Extract all tasks and action items from this meeting fragment.
 Return the result EXCLUSIVELY in valid JSON. 
-If no tasks are found in this specific fragment, return {'tasks': []}.
 
 TRANSCRIPT FRAGMENT:
 ---
 {chunk_text}
 ---
 """
-
+# If no tasks are found in this specific fragment, return {"tasks": []}.
 def get_chunks(text, chunk_size, overlap):
     words = text.split()
     chunks = []
@@ -65,9 +65,35 @@ def get_chunks_by_lines(text, chunk_size, overlap):
             
     return chunks
 
+import re
+
+def extract_raw_text(response):
+    """Handle both old dict-style and new object-style ollama responses."""
+    if isinstance(response, dict):
+        return response.get('response', '{}')
+    # New ollama library returns a GenerateResponse object
+    return getattr(response, 'response', '{}')
+
+def safe_parse_json(raw: str) -> dict:
+    # Strip <think>...</think> blocks (Qwen, Gemma CoT)
+    raw = re.sub(r'<think>.*?</think>', '', raw, flags=re.DOTALL)
+    # Strip markdown fences
+    raw = re.sub(r'^```[a-z]*\n?|```$', '', raw, flags=re.MULTILINE)
+    raw = raw.strip()
+    if not raw:
+        return {}
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        # Try to find a JSON object anywhere in the string
+        match = re.search(r'\{.*\}', raw, re.DOTALL)
+        if match:
+            return json.loads(match.group())
+        return {}
+
 def process_with_model(model_name, chunks):
     all_tasks = []
-    
+
     for i, chunk in enumerate(chunks):
         print(f"  [Chunk {i+1}/{len(chunks)}] Processing...")
         try:
@@ -75,32 +101,29 @@ def process_with_model(model_name, chunks):
                 model=model_name,
                 prompt=PROMPT_TEMPLATE.format(chunk_text=chunk),
                 format="json",
-                options={
-                    "temperature": 0.1, 
-                    "num_ctx": 4096
-                }
+                options={"temperature": 0.1, "num_ctx": 4096}
             )
-            
-            # Load the raw string into a Python dictionary
-            raw_output = response.get('response', '{}')
-            data = json.loads(raw_output)
-            
-            # DEFENSIVE CHECKS:
-            # 1. If the model returned a list directly instead of {"tasks": []}
+
+            raw_output = extract_raw_text(response)
+            print(f"    DEBUG raw[:100]: {repr(raw_output[:100])}")  # ← remove after debugging
+
+            data = safe_parse_json(raw_output)
+
             if isinstance(data, list):
                 chunk_tasks = data
-            # 2. If it's a dict, safely get 'tasks', defaulting to an empty list
             elif isinstance(data, dict):
-                chunk_tasks = data.get("tasks", [])
+                chunk_tasks = data.get("tasks") or []
             else:
                 chunk_tasks = []
 
+            print(f"    Found {len(chunk_tasks)} tasks")
             all_tasks.extend(chunk_tasks)
-            
-        except json.JSONDecodeError:
-            print(f"  Error: Chunk {i+1} returned invalid JSON.")
+
         except Exception as e:
             print(f"  Error in chunk {i+1} with {model_name}: {e}")
+            # import traceback; traceback.print_exc()  # ← full traceback
+
+    # ... rest of deduplication unchanged
 
     # Deduplication logic remains the same
     unique_tasks = {}
