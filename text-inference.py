@@ -18,14 +18,19 @@ class MeetingExtraction(BaseModel):
     tasks: List[Task]
 
 # --- CONFIGURATION ---
-MODELS = ["qwen3.6:35b", "mistral-small:24b", "gemma4:26b"]
+MODELS = ["qwen3.5:9b", "mistral-nemo:12b", "gemma4:e4b"]
+
 TRANSCRIPT_PATH = "/Users/anushkasingh/Desktop/Code/Sundai/voice_may3_26/voice-personal-ai/transcript.txt"
 CHUNK_SIZE_LINES = 50
 OVERLAP_LINES = 10
 
 PROMPT_TEMPLATE = """
-You are a project manager. Extract all tasks and action items from this meeting fragment.
-Return the result EXCLUSIVELY in valid JSON. 
+This is a customer discovery call between a founder and a customer. Extract all tasks, promises and action items that any speaker commits to do from this meeting fragment.
+Return the result EXCLUSIVELY in valid JSON. The JSON should be an object with a single key "tasks" which is a list of task objects. Each task object should have the following fields:
+- "speaker": the name of the person responsible for the task (if identifiable, otherwise "unknown")
+- "task_description": a specific description of the task or action item
+- "deadline": any mentioned timeframe or deadline for the task (if mentioned, otherwise null)
+- "priority": "High", "Medium", or "Low" based on the urgency implied in the conversation. If no tasks are found in this specific fragment, return an empty list for "tasks".
 
 TRANSCRIPT FRAGMENT:
 ---
