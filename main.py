@@ -13,7 +13,7 @@ os.environ["HF_HUB_OFFLINE"] = "1"         # Forces Hugging Face to stay offline
 os.environ["PYANNOTE_METRICS_ENABLED"] = "0" # Disables telemetry
 
 # ── Config ────────────────────────────────────────────────────────────────────
-LOCAL_MODEL_PATH = "./local_pyannote_model/config.yaml"
+LOCAL_MODEL_PATH = "/Users/anushkasingh/Desktop/Code/Sundai/voice_may3_26/local_pyannote_model/config.yaml"
 WHISPER_MODEL    = "distil-large-v3"
 ANALYTICS_PATH   = "analytics1.json"
 
@@ -101,7 +101,7 @@ def run_pipeline(video_path: str, output_transcript: str = "transcript.txt") -> 
     for segment in segments:
         speaker = "UNKNOWN"
         max_overlap = 0.0
-        for turn, _, speaker_label in diarization.itertracks(yield_label=True):
+        for turn, _, speaker_label in diarization.speaker_diarization.itertracks(yield_label=True):
             overlap = min(segment.end, turn.end) - max(segment.start, turn.start)
             if overlap > max_overlap:
                 max_overlap = overlap
