@@ -576,117 +576,112 @@ elif "Pipeline" in page:
 
 
 # ═════════════════════════════════════════════════════════════════════════════
-# PAGE 3 — LLM ANALYTICS (analytics.json — test run)
+# PAGE 3 — LLM ANALYTICS  (reads analytics.json + extracted_tasks_*.json)
 # ═════════════════════════════════════════════════════════════════════════════
 else:
     st.markdown("""
     <div class="hero">
         <h1>📊 LooqBaq Analytics</h1>
-        <p>Results from the test recording — Maureen discovery call · Jan 19, 2026</p>
+        <p>LLM task extraction results — loaded live from <code>analytics.json</code>.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    ANALYTICS = {
-        "transcript_chars": 7812, "transcript_lines": 148,
-        "num_chunks": 4, "chunk_size_lines": 50, "overlap_lines": 10,
-        "models": [
-            {
-                "model": "qwen3.5:9b",
-                "totals": {"prompt_tokens": 4820, "completion_tokens": 612, "total_tokens": 5432,
-                           "tasks_found": 9, "unique_tasks_after_dedup": 7, "errors": 0,
-                           "wall_time_sec": 42.3, "avg_tokens_per_sec": 14.5},
-                "chunks": [
-                    {"chunk_index": 1, "status": "ok", "wall_time_sec": 10.2, "total_tokens": 1358, "tasks_found": 3},
-                    {"chunk_index": 2, "status": "ok", "wall_time_sec": 11.1, "total_tokens": 1372, "tasks_found": 4},
-                    {"chunk_index": 3, "status": "ok", "wall_time_sec": 10.5, "total_tokens": 1348, "tasks_found": 2},
-                    {"chunk_index": 4, "status": "ok", "wall_time_sec": 10.5, "total_tokens": 1354, "tasks_found": 0},
-                ]
-            },
-            {
-                "model": "mistral-nemo:12b",
-                "totals": {"prompt_tokens": 4820, "completion_tokens": 780, "total_tokens": 5600,
-                           "tasks_found": 11, "unique_tasks_after_dedup": 8, "errors": 0,
-                           "wall_time_sec": 63.7, "avg_tokens_per_sec": 12.2},
-                "chunks": [
-                    {"chunk_index": 1, "status": "ok", "wall_time_sec": 15.8, "total_tokens": 1400, "tasks_found": 4},
-                    {"chunk_index": 2, "status": "ok", "wall_time_sec": 16.2, "total_tokens": 1410, "tasks_found": 4},
-                    {"chunk_index": 3, "status": "ok", "wall_time_sec": 15.9, "total_tokens": 1393, "tasks_found": 3},
-                    {"chunk_index": 4, "status": "ok", "wall_time_sec": 15.8, "total_tokens": 1397, "tasks_found": 0},
-                ]
-            },
-            {
-                "model": "gemma4:e4b",
-                "totals": {"prompt_tokens": 4820, "completion_tokens": 490, "total_tokens": 5310,
-                           "tasks_found": 6, "unique_tasks_after_dedup": 5, "errors": 1,
-                           "wall_time_sec": 31.4, "avg_tokens_per_sec": 15.6},
-                "chunks": [
-                    {"chunk_index": 1, "status": "ok",   "wall_time_sec": 7.8, "total_tokens": 1327, "tasks_found": 2},
-                    {"chunk_index": 2, "status": "error", "wall_time_sec": 8.2, "total_tokens": 0,    "tasks_found": 0},
-                    {"chunk_index": 3, "status": "ok",   "wall_time_sec": 7.9, "total_tokens": 1384, "tasks_found": 3},
-                    {"chunk_index": 4, "status": "ok",   "wall_time_sec": 7.5, "total_tokens": 1389, "tasks_found": 1},
-                ]
-            },
-        ]
-    }
+    ANALYTICS = load_json("analytics.json")
 
-    TASKS_SAMPLE = [
-        {"speaker": "Anushka", "task_description": "Send case study write-up on the healthcare/insurance modernization project", "deadline": "Within 2 days", "priority": "High"},
-        {"speaker": "Anushka", "task_description": "Send a one-slide company overview (history, location, team size)", "deadline": "Within 2 days", "priority": "High"},
-        {"speaker": "Anushka", "task_description": "Send the modernization process flow diagram / write-up once ready", "deadline": "Later this week", "priority": "Medium"},
-        {"speaker": "Anushka", "task_description": "Explore feasibility of COBOL-to-C# conversion and assess testing requirements", "deadline": None, "priority": "Medium"},
-        {"speaker": "Anushka", "task_description": "Design unit test structure and validation scenarios for C# target language", "deadline": None, "priority": "Medium"},
-        {"speaker": "Maureen", "task_description": "Share materials with her team and follow up if applicable", "deadline": None, "priority": "Low"},
-        {"speaker": "Maureen", "task_description": "Provide more context on A/B testing methodology for accuracy validation", "deadline": None, "priority": "Low"},
-        {"speaker": "Maureen", "task_description": "Confirm whether project can be completed within a 1-year production deadline", "deadline": "1 year", "priority": "High"},
-    ]
+    # ── No data state ─────────────────────────────────────────────────────────
+    if ANALYTICS is None:
+        st.markdown("""<div class="upload-hint" style="padding:48px">
+            <div style="font-size:2rem;margin-bottom:12px">🤖</div>
+            <div style="font-weight:600;margin-bottom:6px">No LLM analytics found yet</div>
+            <div style="font-size:0.85rem;opacity:0.8">
+                Run <code>python text-inference.py</code> to generate <code>analytics.json</code>
+                and <code>extracted_tasks_&lt;model&gt;.json</code> files.
+            </div>
+        </div>""", unsafe_allow_html=True)
+        st.stop()
 
-    recording_duration_s = 616.78
-    minutes = int(recording_duration_s // 60)
-    seconds = int(recording_duration_s % 60)
+    models = ANALYTICS.get("models", [])
+    if not models:
+        st.warning("analytics.json found but contains no model results.")
+        st.stop()
 
-    st.markdown("### 🎬 Recording Overview")
-    c1, c2, c3, c4 = st.columns(4)
+    # ── Derive key values ─────────────────────────────────────────────────────
+    best_model_entry = max(models, key=lambda m: m["totals"].get("unique_tasks_after_dedup", 0))
+    best_model       = best_model_entry["model"]
+    total_unique     = best_model_entry["totals"].get("unique_tasks_after_dedup", 0)
+
+    transcript_lines = ANALYTICS.get("transcript_lines", "—")
+    transcript_chars = ANALYTICS.get("transcript_chars", 0)
+    num_chunks       = ANALYTICS.get("num_chunks", "—")
+    chunk_size       = ANALYTICS.get("chunk_size_lines", "—")
+    overlap          = ANALYTICS.get("overlap_lines", "—")
+    run_start        = ANALYTICS.get("run_start", "")
+    total_wall       = ANALYTICS.get("total_wall_time_sec")
+
+    # ── Overview stat cards ───────────────────────────────────────────────────
+    st.markdown("### 🎬 Run Overview")
+    c1, c2, c3, c4, c5 = st.columns(5)
     with c1:
         st.markdown(f"""<div class="card">
-            <div class="card-header">Duration</div>
-            <div class="stat-big">{minutes}:{seconds:02d}</div>
-            <div class="stat-label">minutes · seconds</div>
+            <div class="card-header">Models Tested</div>
+            <div class="stat-big">{len(models)}</div>
+            <div class="stat-label">Ollama models</div>
         </div>""", unsafe_allow_html=True)
     with c2:
-        st.markdown("""<div class="card">
-            <div class="card-header">Speakers</div>
-            <div class="stat-big">2</div>
-            <div class="stat-label">Anushka · Maureen</div>
+        st.markdown(f"""<div class="card">
+            <div class="card-header">Transcript Lines</div>
+            <div class="stat-big">{transcript_lines}</div>
+            <div class="stat-label">{transcript_chars:,} chars</div>
         </div>""", unsafe_allow_html=True)
     with c3:
         st.markdown(f"""<div class="card">
-            <div class="card-header">Transcript Lines</div>
-            <div class="stat-big">{ANALYTICS['transcript_lines']}</div>
-            <div class="stat-label">{ANALYTICS['transcript_chars']:,} characters</div>
+            <div class="card-header">Chunks</div>
+            <div class="stat-big">{num_chunks}</div>
+            <div class="stat-label">{chunk_size} lines · {overlap} overlap</div>
         </div>""", unsafe_allow_html=True)
     with c4:
-        total_unique = max(m["totals"]["unique_tasks_after_dedup"] for m in ANALYTICS["models"])
+        st.markdown(f"""<div class="card">
+            <div class="card-header">Best Model</div>
+            <div class="stat-big" style="font-size:1.2rem;padding-top:4px">{best_model}</div>
+            <div class="stat-label">most unique tasks</div>
+        </div>""", unsafe_allow_html=True)
+    with c5:
         st.markdown(f"""<div class="card">
             <div class="card-header">Action Items Found</div>
             <div class="stat-big">{total_unique}</div>
-            <div class="stat-label">across best model</div>
+            <div class="stat-label">deduplicated · best model</div>
         </div>""", unsafe_allow_html=True)
 
-    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
-    st.markdown("### 🤖 Model Comparison")
+    if run_start or total_wall:
+        meta_parts = []
+        if run_start:
+            meta_parts.append(f"Run started: <strong>{run_start}</strong>")
+        if total_wall:
+            meta_parts.append(f"Total wall time: <strong>{fmt_sec(total_wall)}</strong>")
+        st.markdown(
+            f"<div style='color:#6b7280;font-size:0.85rem;margin-bottom:8px'>{' · '.join(meta_parts)}</div>",
+            unsafe_allow_html=True
+        )
 
-    best_model = max(ANALYTICS["models"], key=lambda m: m["totals"]["unique_tasks_after_dedup"])["model"]
+    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Model comparison table ────────────────────────────────────────────────
+    st.markdown("### 🤖 Model Comparison")
     rows_html = ""
-    for m in ANALYTICS["models"]:
-        t = m["totals"]
+    for m in models:
+        t   = m["totals"]
         cls = "winner" if m["model"] == best_model else ""
-        ec = "#dc2626" if t["errors"] > 0 else "#16a34a"
+        ec  = "#dc2626" if t.get("errors", 0) > 0 else "#16a34a"
         rows_html += f"""<tr class="{cls}">
-            <td>{m['model']}</td><td>{t['wall_time_sec']:.1f}s</td>
-            <td>{t['prompt_tokens']:,}</td><td>{t['completion_tokens']:,}</td>
-            <td>{t['total_tokens']:,}</td><td>{t.get('avg_tokens_per_sec','?')}</td>
-            <td>{t['tasks_found']}</td><td><strong>{t['unique_tasks_after_dedup']}</strong></td>
-            <td><span style="color:{ec};font-weight:600">{t['errors']}</span></td>
+            <td>{m['model']}</td>
+            <td>{t.get('wall_time_sec', '—'):.1f}s</td>
+            <td>{t.get('prompt_tokens', 0):,}</td>
+            <td>{t.get('completion_tokens', 0):,}</td>
+            <td>{t.get('total_tokens', 0):,}</td>
+            <td>{t.get('avg_tokens_per_sec', '?')}</td>
+            <td>{t.get('tasks_found', '—')}</td>
+            <td><strong>{t.get('unique_tasks_after_dedup', '—')}</strong></td>
+            <td><span style="color:{ec};font-weight:600">{t.get('errors', 0)}</span></td>
         </tr>"""
 
     st.markdown(f"""<div class="card">
@@ -701,47 +696,92 @@ else:
     </div>""", unsafe_allow_html=True)
 
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
-    st.markdown("### 🔬 Chunk-Level Breakdown")
-    st.markdown(f"<div style='color:#6b7280;font-size:0.85rem;margin-bottom:16px'>Transcript split into <strong style='color:#6d28d9'>{ANALYTICS['num_chunks']} chunks</strong> · {ANALYTICS['chunk_size_lines']} lines/chunk · {ANALYTICS['overlap_lines']} lines overlap</div>", unsafe_allow_html=True)
 
-    for m in ANALYTICS["models"]:
-        with st.expander(f"🔹 {m['model']}", expanded=(m["model"] == best_model)):
-            for c in m["chunks"]:
-                cls  = "ok" if c["status"] == "ok" else "err"
-                icon = "✅" if c["status"] == "ok" else "❌"
-                tp = f"<div class='chunk-pill'>{icon} <span>{c['tasks_found']} tasks</span></div>"
-                tkp = f"<div class='chunk-pill'>tokens <span>{c.get('total_tokens',0):,}</span></div>"
-                tmp = f"<div class='chunk-pill'>⏱ <span>{c['wall_time_sec']:.1f}s</span></div>"
-                ep  = f"<div class='chunk-pill' style='color:#dc2626'>error: {c.get('error','—')}</div>" if c["status"] == "error" else ""
+    # ── Chunk-level breakdown ─────────────────────────────────────────────────
+    st.markdown("### 🔬 Chunk-Level Breakdown")
+    st.markdown(
+        f"<div style='color:#6b7280;font-size:0.85rem;margin-bottom:16px'>"
+        f"Transcript split into <strong style='color:#6d28d9'>{num_chunks} chunks</strong> "
+        f"· {chunk_size} lines/chunk · {overlap} lines overlap</div>",
+        unsafe_allow_html=True
+    )
+
+    for m in models:
+        chunks = m.get("chunks", [])
+        with st.expander(f"🔹 {m['model']}  —  {m['totals'].get('unique_tasks_after_dedup','?')} unique tasks", expanded=(m["model"] == best_model)):
+            if not chunks:
+                st.markdown("<div style='color:#9095b8;font-size:0.85rem;padding:8px'>No chunk data available.</div>", unsafe_allow_html=True)
+            for c in chunks:
+                cls  = "ok" if c.get("status") == "ok" else "err"
+                icon = "✅" if c.get("status") == "ok" else "❌"
+                tp  = f"<div class='chunk-pill'>{icon} <span>{c.get('tasks_found', 0)} tasks</span></div>"
+                tkp = f"<div class='chunk-pill'>tokens <span>{c.get('total_tokens', 0):,}</span></div>"
+                tmp = f"<div class='chunk-pill'>⏱ <span>{c.get('wall_time_sec', 0):.1f}s</span></div>"
+                ep  = f"<div class='chunk-pill' style='color:#dc2626'>error: {c.get('error','—')}</div>" if c.get("status") == "error" else ""
                 st.markdown(f"""<div class="chunk-row {cls}">
-                    <div style="color:#9095b8;min-width:70px">Chunk {c['chunk_index']}</div>
+                    <div style="color:#9095b8;min-width:70px">Chunk {c.get('chunk_index','?')}</div>
                     {tp}{tkp}{tmp}{ep}
                 </div>""", unsafe_allow_html=True)
 
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Action items — load from extracted_tasks_<best_model>.json ────────────
     st.markdown("### ✅ Extracted Action Items")
-    st.markdown(f"<div style='color:#6b7280;font-size:0.85rem;margin-bottom:16px'>From best model · <strong style='color:#6d28d9'>{best_model}</strong></div>", unsafe_allow_html=True)
 
-    priority_colors = {"High": "#dc2626", "Medium": "#d97706", "Low": "#16a34a"}
-    priority_bg     = {"High": "#fef2f2", "Medium": "#fffbeb", "Low": "#f0fdf4"}
-    priority_border = {"High": "#fecaca", "Medium": "#fde68a", "Low": "#bbf7d0"}
+    # Find the tasks file for the best model
+    safe_model_name = best_model.replace(":", "_")
+    tasks_file      = f"extracted_tasks_{safe_model_name}.json"
+    tasks_data      = load_json(tasks_file)
 
-    for task in TASKS_SAMPLE:
-        p   = task.get("priority", "Medium")
-        pc  = priority_colors.get(p, "#6b7280")
-        pb  = priority_bg.get(p, "#ffffff")
-        pbd = priority_border.get(p, "#e2e4ec")
-        dl  = f"<span style='color:#6b7280;font-size:0.8rem'>📅 {task['deadline']}</span>" if task.get("deadline") else ""
-        st.markdown(f"""<div class="card" style="border-left:3px solid {pc};background:{pb};border-color:{pbd};padding:16px 20px;margin-bottom:10px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
-                <div>
-                    <div style="font-size:0.78rem;color:#9095b8;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">👤 {task['speaker']}</div>
-                    <div style="color:#1a1a2e;font-weight:500">{task['task_description']}</div>
-                    <div style="margin-top:6px">{dl}</div>
-                </div>
-                <div style="background:white;border:1px solid {pc};color:{pc};border-radius:12px;padding:2px 10px;font-size:0.75rem;font-weight:700;white-space:nowrap">{p}</div>
+    # Fallback: scan for any extracted_tasks_*.json if the exact file isn't found
+    if tasks_data is None:
+        import glob
+        candidates = sorted(glob.glob("extracted_tasks_*.json"))
+        if candidates:
+            tasks_data = load_json(candidates[0])
+            tasks_file = candidates[0]
+
+    if tasks_data is None:
+        st.markdown(f"""<div class="upload-hint">
+            <div style="font-weight:600;margin-bottom:4px">No task file found</div>
+            <div style="font-size:0.85rem;opacity:0.8">
+                Expected <code>{tasks_file}</code> — run <code>python text-inference.py</code> to generate it.
             </div>
         </div>""", unsafe_allow_html=True)
+    else:
+        tasks      = tasks_data.get("tasks", [])
+        total_tasks = tasks_data.get("total_tasks", len(tasks))
+        st.markdown(
+            f"<div style='color:#6b7280;font-size:0.85rem;margin-bottom:16px'>"
+            f"From <strong style='color:#6d28d9'>{best_model}</strong> · "
+            f"<strong>{total_tasks}</strong> tasks loaded from <code>{tasks_file}</code></div>",
+            unsafe_allow_html=True
+        )
+
+        priority_colors = {"High": "#dc2626", "Medium": "#d97706", "Low": "#16a34a"}
+        priority_bg     = {"High": "#fef2f2", "Medium": "#fffbeb", "Low": "#f0fdf4"}
+        priority_border = {"High": "#fecaca", "Medium": "#fde68a", "Low": "#bbf7d0"}
+
+        if not tasks:
+            st.info("Task file loaded but contains no tasks.")
+        for task in tasks:
+            p   = task.get("priority", "Medium")
+            pc  = priority_colors.get(p, "#6b7280")
+            pb  = priority_bg.get(p, "#ffffff")
+            pbd = priority_border.get(p, "#e2e4ec")
+            spk = task.get("speaker", "Unknown")
+            desc = task.get("task_description", "—")
+            dl  = f"<span style='color:#6b7280;font-size:0.8rem'>📅 {task['deadline']}</span>" if task.get("deadline") else ""
+            st.markdown(f"""<div class="card" style="border-left:3px solid {pc};background:{pb};border-color:{pbd};padding:16px 20px;margin-bottom:10px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+                    <div>
+                        <div style="font-size:0.78rem;color:#9095b8;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">👤 {spk}</div>
+                        <div style="color:#1a1a2e;font-weight:500">{desc}</div>
+                        <div style="margin-top:6px">{dl}</div>
+                    </div>
+                    <div style="background:white;border:1px solid {pc};color:{pc};border-radius:12px;padding:2px 10px;font-size:0.75rem;font-weight:700;white-space:nowrap">{p}</div>
+                </div>
+            </div>""", unsafe_allow_html=True)
 
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;color:#b0b4cc;font-size:0.8rem'>LooqBaq · Built with Faster-Whisper, Pyannote, and Ollama · Kathalyst</div>", unsafe_allow_html=True)

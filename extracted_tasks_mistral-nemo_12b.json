@@ -1,47 +1,95 @@
 {
-  "total_tasks": 7,
+  "total_tasks": 15,
   "tasks": [
     {
       "speaker": "Anushka",
-      "task_description": "Show Maureen our process flow",
+      "task_description": "Decide whether to restart Catalyst or look for a job.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Chat with Anushka to explore potential collaboration on a project for Upworldly Global.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out whether to hire someone full-time or a consultant for the non-profit organization's engineering needs.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Chat with Anushka to discuss potential collaboration and explore hiring options (full-time, consultant, or otherwise) for the non-profit organization.",
       "deadline": null,
       "priority": "Medium"
     },
     {
       "speaker": "Anushka",
-      "task_description": "Send samples of modernization process flow",
-      "deadline": "later this week",
-      "priority": "Medium"
-    },
-    {
-      "speaker": "Anushka",
-      "task_description": "Send write-up on recent modernization project",
-      "deadline": "later this week",
-      "priority": "Medium"
-    },
-    {
-      "speaker": "Anushka",
-      "task_description": "Create structure for unit tests to validate COBOL and C-sharp code scenarios, including negative and positive cases.",
+      "task_description": "Explore visa options (H-1B, O-1, cap exempt H-1B) to work in the U.S. for Wafaa's non-profit organization.",
       "deadline": null,
       "priority": "Medium"
     },
     {
-      "speaker": "Anushka",
-      "task_description": "Document modern code and architectural support for moving databases and services.",
+      "speaker": "Wafaa",
+      "task_description": "Share the prototype project with Anushka for review and feedback.",
       "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Provide more details about the project for the organization she is working with in the next two months.",
+      "deadline": "Next two months",
       "priority": "Low"
     },
     {
-      "speaker": "Anushka",
-      "task_description": "Send a write-up on the modernization process done so far to Maureen.",
+      "speaker": "Wafaa",
+      "task_description": "Complete consulting work and get feedback on prototype before moving to production.",
       "deadline": null,
       "priority": "Medium"
     },
     {
-      "speaker": "Anushka",
-      "task_description": "Send Maureen the case study for the healthcare system's insurance calculator by the end of two days.",
-      "deadline": "2 days after the meeting",
+      "speaker": "Wafaa",
+      "task_description": "Decide on involvement in production stuff with founders.",
+      "deadline": null,
       "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Collect feedback for the project with the organization she's working with and share updates.",
+      "deadline": "Next two months",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Discuss payment and cost structure, considering part-time work and potential full-time non-profit work.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Share prototype and collect feedback from Anushka.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out a way to sign contract with the non-profit.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out the next steps and get back to Anushka regarding working together.",
+      "deadline": "Next few weeks",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Anushka",
+      "task_description": "Read up about Upwardly Global company and let Wafaa know if she has any questions.",
+      "deadline": null,
+      "priority": "Low"
     }
   ]
 }

@@ -1,0 +1,53 @@
+{
+  "run_start": "2026-05-03T19:58:41.156029",
+  "input_file": "Meeting with Wafaa - Mar 30 2026.mp4",
+  "input_file_size_mb": 286.56,
+  "whisper_model": "distil-large-v3",
+  "stages": {
+    "pyannote_load_sec": 1.227,
+    "diarization_sec": 545.695,
+    "whisper_load_sec": 2.626,
+    "transcription_sec": 240.862,
+    "alignment_sec": 0.134,
+    "save_transcript_sec": 0.003
+  },
+  "recording": {
+    "duration_sec": 1541.78,
+    "duration_formatted": "25:41",
+    "language": "en",
+    "language_probability": 0.997
+  },
+  "transcript": {
+    "output_file": "transcript.txt",
+    "total_segments": 328,
+    "total_words": 3914,
+    "words_per_minute": 152.3,
+    "real_time_factor": 0.156
+  },
+  "speakers": {
+    "count": 2,
+    "names": [
+      "Wafaa",
+      "Anushka"
+    ],
+    "word_counts": {
+      "Wafaa": 2413,
+      "Anushka": 1501
+    },
+    "segment_counts": {
+      "Wafaa": 176,
+      "Anushka": 152
+    }
+  },
+  "output_file": "transcript.txt",
+  "total_pipeline_sec": 818.509,
+  "run_end": "2026-05-03T20:12:19.673937",
+  "speed_summary": {
+    "recording_duration_sec": 1541.78,
+    "total_pipeline_sec": 818.509,
+    "diarization_sec": 545.695,
+    "transcription_sec": 240.862,
+    "real_time_factor": 0.156,
+    "note": "Real-time factor < 1 means transcription was faster than the recording"
+  }
+}

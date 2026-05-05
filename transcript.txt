@@ -1,163 +1,328 @@
-[00.00s - 02.00s] Anushka: Hello, how are you?
-[02.00s - 04.00s] Anushka: I'm doing well, how are you doing?
-[04.00s - 06.00s] Maureen: I'm doing very well, thank you.
-[06.00s - 12.00s] Anushka: Just before we get started, do you mind if I have my note-taker on the call?
-[12.00s - 14.00s] Maureen: Yeah, it's okay, that's no problem.
-[14.00s - 15.00s] Anushka: Okay.
-[15.00s - 17.00s] Anushka: Thank you.
-[17.00s - 20.00s] Anushka: Well, it's really nice to meet you.
-[20.00s - 23.00s] Anushka: My name is Anishka and the founder of Catalyst.
-[23.00s - 26.00s] Anushka: We'd love to know how I can help you out.
-[26.00s - 28.00s] Maureen: Yeah, sure.
-[28.00s - 33.86s] Maureen: So I'm the chief technology officer at Payworks, okay.
-[33.86s - 39.64s] Maureen: And one of the things that we're exploring right now is modernizing some legacy code that we have.
-[39.64s - 41.74s] Maureen: It's a computational engine, basically.
-[42.66s - 47.36s] Maureen: And it's written in a very, very old language called Cobal.
-[47.36s - 48.36s] Maureen: Okay.
-[48.36s - 54.20s] Maureen: And so we've we've had discussions with a few different vendors, most of which take a very
-[54.20s - 56.24s] Maureen: deterministic approach to it, right?
-[56.24s - 57.96s] Maureen: Like transpilot.
-[58.00s - 59.64s] Maureen: and then do the re-factor.
-[59.98s - 67.20s] Maureen: And so the reason why I reached out into your website was because you advertise an AI-driven model.
-[68.40s - 71.96s] Maureen: And so, you know, we're really exploring approaches.
-[72.74s - 77.96s] Maureen: Yes, I could take a transpile approach, and I'd still end up with this big monolithic piece of code.
-[78.12s - 82.22s] Maureen: Yes, do I have more people in the organization that understand how to support it?
-[82.62s - 86.86s] Maureen: But the expert who writes it today in the old language, who's very comfortable in that,
-[86.86s - 91.06s] Maureen: would still need to rely on that person to understand what the code does.
-[92.70s - 98.82s] Maureen: And so what I'm wondering is a little bit more about the AI-driven model, the time it takes,
-[99.14s - 105.24s] Maureen: how you ensure accuracy, and do you have any, you know, use cases or business cases that you
-[105.24s - 107.34s] Maureen: could send me to read through so that I could understand?
-[107.48s - 111.94s] Maureen: In terms of magnitude, it's less than 50,000 lines of code.
-[113.06s - 113.32s] Speaker: Okay.
-[114.08s - 114.64s] Speaker: Okay.
-[114.64s - 118.12s] Speaker: Okay. That is strange.
-[120.12s - 127.08s] Anushka: If you don't mind me asking, are you trying to move from COBOL to Java or some other? Do you have that?
-[127.08s - 129.10s] Anushka: Not to Java? To C-sharp.
-[130.32s - 132.82s] Anushka: Okay. Kow-to-to-C-sharp. Okay. Yeah.
-[134.20s - 140.42s] Anushka: And I'm assuming do you have, like, cobalt engineers within your team, C-sharp engineers within your team?
-[141.22s - 143.92s] Anushka: Or is it? Okay.
-[144.64s - 145.08s] Anushka: All right.
-[146.34s - 153.76s] Anushka: So the reason I ask is because, so our approach, and I'll show you in a little bit, we do focus a lot on
-[153.76s - 159.22s] Anushka: documenting and knowledge transfer to maintain it long term because that's, I mean, if you can't,
-[159.28s - 162.66s] Anushka: if you don't have engineers maintaining it, it's almost like you don't have the software.
-[162.96s - 167.52s] Maureen: Like, it's, it's, it's, it's, it's, it's, I end up with the same challenge on the other side of this,
-[167.52s - 169.76s] Maureen: if no one understands it on, at the other side. Yeah.
-[170.44s - 174.32s] Anushka: Yeah, yeah. So that's why I asked about both, and like, do you have engineers and both sides.
-[174.64s - 177.48s] Anushka: you know, what level of support and things like that.
-[177.58s - 177.74s] Anushka: Okay.
-[179.84s - 189.20s] Anushka: Just, so, okay, let me just show you a little bit of, this is our, okay, if I can get my screens here to work.
-[194.30s - 195.10s] Speaker: Just a minute.
-[195.88s - 198.60s] Speaker: But this is a kind of the process flow that we follow.
-[199.32s - 203.58s] Anushka: We have some samples which I can send you a little later on.
-[203.58s - 204.62s] Anushka: They're actually putting to the process flow that we follow.
-[204.64s - 211.76s] Anushka: a write-up on a modernization that we did in the last couple of weeks. So
-[211.76s - 217.10s] Anushka: once that is up later this week, I'll send you that. But this is kind of the flow that we follow.
-[217.94s - 224.68s] Anushka: We start out, I mean, we take the code. We first document the Kubal code, primarily just because
-[224.68s - 229.98s] Anushka: a lot of times we have found that customers also don't know everything that's in there. So
-[229.98s - 234.62s] Anushka: giving them a little bit of view of what all is there. We actually even create like a nice
-[234.64s - 239.16s] Anushka: visual diagrams. They are able to play around with it. That's normally when we request that,
-[239.24s - 243.66s] Anushka: you know, if you want to remove anything, if you want to like change something, you highlight those
-[243.66s - 249.78s] Anushka: early on so that we can take that into account and we do the modernization. Our code conversion
-[249.78s - 257.46s] Anushka: does use AI heavily, but we do have, well, the first half is deterministic. So what we essentially
-[257.46s - 264.10s] Anushka: do is we get the bone structures of the code base, of the COBOL code base. We figure out where each
-[264.10s - 269.80s] Anushka: functionality decides and how it's all interacting together. And then we try and maintain that
-[269.80s - 278.48s] Anushka: sequence. Because if you, as you might know, kubal is a very sequential algorithm. It, it does everything
-[278.48s - 284.02s] Anushka: one after the other and in very quick succession. But if you take that and you put it into like
-[284.02s - 290.50s] Anushka: a like a Python or a Java or even a C sharp, C sharp will actually be faster, but Java and
-[290.50s - 296.32s] Anushka: Python are not quite that fast. And especially, you know, people come to us, like,
-[296.34s - 301.52s] Anushka: they want to do a multi-threaded model and you need to keep that sequence in mind when you do a
-[301.52s - 308.26s] Anushka: multi-fired model. So we kind of keep that barebone structure in mind and then we do like a
-[308.26s - 316.72s] Anushka: grouping, which is basically to figure out which programs like contextually go together. And then
-[316.72s - 320.48s] Anushka: those go into like one class and one, you know, micro-curvis.
-[320.50s - 326.98s] Maureen: So you create it into a modern, you know, code architecture at the end of the day.
-[327.04s - 330.64s] Maureen: So question for you. It says Java and Python all over here. Do you do C-sharp?
-[330.96s - 334.38s] Maureen: Do we have to convert it to Java first and then C-sharp? Because I've seen some of that,
-[334.44s - 341.02s] Anushka: and we don't want to do that. Yeah. We have not done C-sharp before. Most of our requests have been
-[341.02s - 346.62s] Anushka: for Java. And I have put in Python because I personally do not think Java is a good option for
-[346.62s - 350.24s] Anushka: everything that resides in Coval. I think for some things.
-[350.50s - 356.86s] Anushka: Python is more suited. That being said, we could work with you in figuring out because
-[356.86s - 364.48s] Anushka: it is AI-driven, the language is very malleable. The part that is going to change is going
-[364.48s - 370.06s] Anushka: to be the testing. Yes. So that we'd have to work a little bit more in creating the proper
-[370.06s - 375.14s] Anushka: structure for the unit tests, creating the proper scenario so that we can validate from
-[375.14s - 380.48s] Anushka: the COBOL and the, you know, C-sharp end on everything that's, you know, you know,
-[380.50s - 386.12s] Anushka: basically we want to make sure every scenario is accounted for, and there is no scenario
-[386.12s - 390.38s] Anushka: that happens in the modern code that does not happen in the legacy code, right?
-[390.68s - 396.56s] Anushka: The negative and the positive. So that we would need to work on a little bit, and then the documentation
-[396.56s - 401.62s] Anushka: part is already built. We document any language, that's fine. So we can document the modern
-[401.62s - 408.04s] Anushka: code. And then architectural support that goes into, like, if you want to move databases and services
-[408.04s - 410.48s] Anushka: and things like that, which we don't have to go.
-[410.50s - 417.80s] Anushka: get into right now. But yeah, this is a little bit of what kind of we follow. I can send you a
-[417.80s - 422.36s] Anushka: little bit of a write-up on what we have done and- Sure, that would be helpful for me to see that
-[422.36s - 429.36s] Maureen: kind of like magnitude, what language you converted it into. For us, it's computational, so it needs to be
-[429.36s - 436.78s] Maureen: extremely accurate. Just like think banking industry, extremely accurate, very efficient, and perform
-[436.78s - 438.34s] Maureen: it. Okay.
-[438.34s - 444.66s] Anushka: If you don't mind me asking, is there any way that you all test for accuracy right now?
-[444.74s - 447.34s] Anushka: Like your kubal, do you have any kind of scenario mapping?
-[447.34s - 451.28s] Maureen: Yeah, we do A-B testing. So when we create new features, we do A-B testing.
-[452.12s - 459.72s] Maureen: We've been pulling part portions of our code out of the main engine that doesn't belong there.
-[459.92s - 462.26s] Maureen: And then we run parallel testing and production, actually.
-[462.40s - 468.26s] Maureen: We run production against the existing thing and the new thing, and we make sure that we do that
-[468.34s - 471.40s] Maureen: and it matches. I think if we did the whole thing, of course, we'd have to create more
-[471.40s - 475.34s] Maureen: test cases and things like that, but we already do A-B testing today.
-[475.82s - 480.58s] Anushka: Okay, got it. And is this the first time you all are doing a modernization? Have you done
-[480.58s - 485.84s] Maureen: any other part of the system? Okay, first thing. I mean, we've picked it, we picked away at it over time,
-[485.88s - 491.32s] Maureen: but this is about getting it done really quickly. My biggest concern for it is because of
-[491.32s - 496.86s] Maureen: the precision that is so important. Getting it converted, getting it converted into something
-[496.86s - 501.14s] Maureen: that can be supported by more than a couple people and accuracy.
-[501.64s - 508.14s] Maureen: And so the testing, the length of testing over time, we've got to do that right.
-[508.52s - 508.64s] Anushka: Yeah.
-[509.12s - 510.74s] Maureen: You've got to do that right. Yeah, that's fair.
-[511.12s - 515.60s] Anushka: And if you don't mind me asking, what's the urgency level that your company has on this project?
-[515.72s - 516.56s] Anushka: Do you have a deadline?
-[516.62s - 517.70s] Anushka: I want it done yesterday.
-[518.58s - 519.86s] Maureen: I want it done yesterday.
-[520.60s - 521.08s] Maureen: Okay.
-[521.42s - 523.64s] Maureen: I want it done within the next year.
-[524.78s - 525.58s] Maureen: Got it.
-[525.58s - 526.14s] Anushka: Got it.
-[526.34s - 527.66s] Maureen: Like in production, yeah.
-[528.18s - 529.32s] Maureen: Which I think is doable.
-[529.66s - 534.46s] Maureen: When I look around and do some research, lots of other organization have hundreds of thousands
-[534.46s - 538.92s] Maureen: of lines of code and millions of lines were under 50,000, right?
-[538.92s - 541.58s] Maureen: So, you know, they've all done it.
-[541.70s - 542.94s] Maureen: Yeah.
-[543.24s - 543.48s] Maureen: Yeah.
-[543.90s - 544.08s] Anushka: Yeah.
-[544.08s - 548.64s] Anushka: Yeah, I was, 50,000 is very much doable in production as well.
-[548.90s - 549.28s] Anushka: Yeah.
-[549.46s - 549.64s] Maureen: Yeah.
-[550.02s - 550.30s] Maureen: Okay.
-[550.50s - 550.70s] Maureen: Yeah.
-[550.76s - 553.24s] Maureen: So I'd be interested in seeing a little bit more information.
-[553.24s - 555.56s] Maureen: If you case studies that are kind of similar to.
-[555.58s - 560.78s] Maureen: you know, high precision required short turnaround, but also getting to a place where
-[560.78s - 562.16s] Maureen: it's sustainable and supportable.
-[562.64s - 566.82s] Maureen: And then we'll see from there, I'll share it with my team and reach out if it's applicable.
-[566.98s - 567.68s] Maureen: That would be super helpful.
-[568.88s - 569.04s] Anushka: Yeah.
-[569.20s - 570.40s] Anushka: Let me do that.
-[571.40s - 575.82s] Anushka: I'll send you the case study that we're writing up for our, it's a healthcare system.
-[576.28s - 579.90s] Anushka: So not quite a computational engine, but it's an insurance calculator.
-[580.54s - 582.10s] Anushka: So it has to be accurate.
-[582.44s - 582.70s] Anushka: Yes.
-[582.70s - 584.54s] Anushka: Because, you know, it's, you're calculated.
-[584.74s - 585.10s] Anushka: So, yeah.
-[585.10s - 588.64s] Anushka: I'll send you the information for that in the next two days.
-[589.14s - 595.62s] Maureen: And, yeah, and then you have like a one slide about your company, you know, how long you've been around, where you're based, all of those sorts of things.
-[595.68s - 596.30s] Maureen: That would be helpful to you.
-[596.62s - 596.90s] Maureen: Please.
-[597.48s - 598.58s] Maureen: Yeah, I can do so much.
-[599.06s - 599.38s] Maureen: Excellent.
-[599.64s - 599.84s] Maureen: Yes.
-[599.92s - 600.16s] Maureen: Okay.
-[600.46s - 601.24s] Maureen: Well, thank you so much.
-[601.28s - 603.52s] Maureen: I'm so glad that we're able to connect really quickly.
-[604.16s - 605.74s] Maureen: And I'll watch for your email.
-[606.74s - 607.10s] Maureen: Yes.
-[607.20s - 607.68s] Anushka: Thank you.
-[607.74s - 609.72s] Anushka: If you need anything else for me, please let me know.
-[610.44s - 612.38s] Anushka: And you have my email through this invite.
-[612.96s - 613.34s] Speaker: Okay.
-[613.34s - 614.18s] Speaker: Thank you so much.
-[614.50s - 614.68s] Speaker: Bye.
-[615.10s - 616.78s] Speaker: Thank you. Take care. Bye.
+[00.00s - 03.12s] Wafaa: My God, I don't be so bad.
+[04.44s - 11.90s] Anushka: I know, I keep, like, all the snowstorms and all two, three times have happened this time.
+[12.86s - 13.20s] Anushka: Yeah.
+[14.80s - 15.96s] Anushka: I keep, every time I made me.
+[15.96s - 17.12s] Wafaa: How's your family doing?
+[19.12s - 19.96s] Anushka: Family is good.
+[20.90s - 21.76s] Wafaa: Yeah, nice.
+[22.66s - 23.52s] Wafaa: Nice, that's awesome.
+[24.40s - 26.04s] Wafaa: So when are you coming back?
+[26.74s - 28.56s] Anushka: I've been home for long enough that now,
+[28.56s - 31.26s] Anushka: you know, what we say?
+[32.50s - 34.82s] Anushka: I mean, it tends to happen, right?
+[34.88s - 38.12s] Anushka: When you're not here, mom is always like, oh, come back, come back, come back.
+[38.20s - 40.36s] Anushka: Then if you come back, then she's like, now what?
+[41.42s - 42.36s] Wafaa: When are you leaving?
+[43.28s - 44.84s] Wafaa: How long have you been home?
+[46.68s - 51.04s] Anushka: I think I came in January, so yeah, it's been a good,
+[51.44s - 55.44s] Anushka: because I, it's blessed for this entire semester, so, yeah.
+[55.74s - 57.02s] Wafaa: Okay, that's good.
+[57.02s - 57.68s] Wafaa: That's good.
+[58.56s - 64.96s] Anushka: But, yeah, no, I'm thinking coming back in May, at least, you know, for the entire summer.
+[65.76s - 67.26s] Wafaa: Yeah, that's good.
+[67.62s - 70.38s] Wafaa: So what's, so what, yeah, what have you been up to?
+[72.72s - 73.74s] Anushka: Not much.
+[74.52s - 80.80s] Anushka: I ended up, so I was helping Beth part-time with some of the C10 lab stuff.
+[80.94s - 86.58s] Anushka: She wanted to, you know, internally work on some, the portal and things like that.
+[86.58s - 96.08s] Anushka: Other than that, I ended up doing a consulting job in Mumbai with, like, another friend's company here.
+[96.64s - 96.92s] Anushka: Nice.
+[96.92s - 101.78s] Anushka: They wanted to do, like, you know, AI adoption and things like that for a marketing department.
+[101.90s - 104.28s] Anushka: So I was for a month or so I was working with them.
+[104.80s - 105.16s] Anushka: Nice.
+[105.96s - 110.10s] Anushka: So, yeah, just things like that, hey, Y.
+[110.66s - 111.18s] Anushka: Yeah.
+[111.18s - 114.72s] Anushka: I still kind of figure out because I put a pause on Catalyst.
+[115.48s - 116.56s] Anushka: So now it's.
+[116.58s - 120.90s] Anushka: like, you know, reassessing, do you want to restart that?
+[120.96s - 126.32s] Anushka: Because if I essentially restart that, I won't have to start from scratch, but I kind of have to
+[126.32s - 131.08s] Anushka: redo some of the initial stuff that you're doing.
+[131.98s - 132.56s] Anushka: Okay, yeah.
+[132.98s - 135.10s] Anushka: So, yeah, now that big question is there.
+[135.20s - 136.36s] Anushka: Should I go and restart the answer?
+[136.54s - 137.88s] Anushka: So should I go get a job?
+[139.18s - 139.70s] Wafaa: Yeah.
+[140.20s - 143.02s] Wafaa: Yeah, that's, that's a tough decision.
+[143.02s - 146.02s] Wafaa: And do you have any customers or do you don't?
+[146.58s - 152.36s] Anushka: Uh, I did. Um, we, I mean, I did, not any active ones right now.
+[153.36s - 153.92s] Anushka: Sorry?
+[154.34s - 154.62s] Anushka: Yeah.
+[155.16s - 157.40s] Anushka: I don't have any active customers right now.
+[157.86s - 158.14s] Anushka: Okay.
+[158.24s - 164.88s] Anushka: Because I, yeah, all of them, it just so happened that the timing and everything lined up that by
+[164.88s - 168.48s] Anushka: February, we didn't, like, the active projects was about over.
+[168.90s - 175.58s] Wafaa: Yeah. Yeah. Yeah, I know. It's actually really tough. It's a very difficult question.
+[176.58s - 181.22s] Anushka: Yeah. So it was basically a whole bunch of things coming together at the same time.
+[182.02s - 182.38s] Anushka: But yeah.
+[182.84s - 185.26s] Wafaa: Yeah. That's a very tough decision.
+[188.34s - 191.14s] Anushka: Sorry, I think there's a little bit of a delay.
+[191.82s - 193.86s] Wafaa: Paraly. Sorry. Sorry. Yeah.
+[194.82s - 196.82s] Anushka: No, no, no. I'm saying it's a...
+[197.76s - 199.56s] Wafaa: Do you want me to turn my cameras off?
+[200.46s - 202.62s] Anushka: No, no, no, no. It's fine. It's fine.
+[203.34s - 206.34s] Wafaa: Yeah, I'm saying like it's a really tough decision for a startup.
+[206.58s - 212.66s] Wafaa: like to figure out what to do and what to go next and et cetera. It's, it's, yeah. It's another,
+[212.66s - 223.54s] Wafaa: not a fun place to be in. Nope. It is not. Yeah. Yeah. Yeah. Yeah. Okay. So I thought about
+[223.54s - 232.10s] Wafaa: to you. So I just joined a company in January. It's called upworldly global.
+[234.02s - 236.42s] Wafaa: Okay. It's a nonprofit organization. It's a non-profit organization.
+[236.58s - 244.38s] Wafaa: and basically we help immigrants and refugees to find job in the U.S. So I basically
+[244.38s - 254.96s] Wafaa: rebuilding all their product. Okay. All their platform. So I'm not technical. Like I, I am technical,
+[254.96s - 262.86s] Wafaa: but I'm not really technical. Like, I am technically with AI, but I'm not really technical to make sure
+[262.86s - 266.56s] Wafaa: that I have good security in place, like make sure that I'm building.
+[266.58s - 271.50s] Wafaa: for scalability, make sure that things are like set up in the right way. So like when you
+[271.50s - 278.08s] Wafaa: have 10,000 people, things are not going to be a shit show. So I, so basically right now,
+[278.08s - 285.88s] Wafaa: I'm building them a prototype. Okay. And I'm also doing consulting aside. So I am basically
+[285.88s - 292.16s] Wafaa: like building some prototype for them and then I want to start building and making sure that things
+[292.16s - 296.48s] Wafaa: are set right. But I won't be able to do it on my own. So,
+[296.58s - 302.22s] Wafaa: basically, I was chatting with Bess and she said, I talk to you and like see, see what, like,
+[303.56s - 308.58s] Wafaa: see, like, just talk first and like figure out, like, and then we can maybe figure out a way to work
+[308.58s - 313.62s] Wafaa: together because it's not just only like the work I'm doing with the nonprofit. I'm also doing
+[313.62s - 314.94s] Wafaa: some consulting aside.
+[316.26s - 322.00s] Wafaa: Okay. And even with my consulting consulting work, I'm building them a prototype for the platform.
+[322.00s - 326.34s] Wafaa: And then I think once they are happy, we need to build, like, build more stuff for them. Like,
+[326.58s - 331.92s] Wafaa: like more actual stuff. So what I've been doing, basically, I've been building was lovable,
+[332.88s - 339.76s] Wafaa: just a prototype, and then making, deploying lovable into GitHub, and then I take everything
+[339.76s - 347.38s] Wafaa: into cloud code and I build things at scalable level. But, like, I've been doing that for my
+[347.38s - 351.88s] Wafaa: personal, personal project and stuff, and they've been working, but I want to make sure that,
+[351.88s - 354.88s] Wafaa: like, I am setting things up for success.
+[356.58s - 367.18s] Wafaa: So, yeah, I just want to chat with you and, like, see, like, yeah, like, see, like, if you will be interested in, like, like, like, doing some work with me.
+[367.18s - 380.92s] Wafaa: And then also, like, if you want to do some work with me, like, do you, like, for the non-profit organization that I'm working with, like, I have some budget and they want me to figure out if I want to hire someone full time or a consultant or whatever.
+[381.22s - 382.46s] Wafaa: So I want to chat with you.
+[382.62s - 384.08s] Wafaa: We only have one engineer.
+[385.70s - 385.90s] Wafaa: Okay.
+[386.58s - 392.58s] Wafaa: I want to chat with you and see where you're at and then also like just talk more about it.
+[393.62s - 403.86s] Anushka: Yeah. No, I'm happy to help. The only barrier I see is what do you say, a visa a little bit.
+[403.86s - 416.18s] Anushka: Because on a student visa, I can't work as a consultant in the U.S. So if you want me to work as a consultant in the U.S. So if you want me to work as a consultant, so one of the things,
+[416.18s - 422.76s] Anushka: that I was going to do long term anyways, was going to take a little bit of like a year gap.
+[422.86s - 425.70s] Anushka: So my visa is valid until September of this year.
+[426.24s - 427.54s] Anushka: So I was going to come in the summer.
+[428.04s - 428.94s] Anushka: So you're F1?
+[430.06s - 430.88s] Anushka: F1, yeah.
+[432.16s - 439.40s] Anushka: I was going to stay until September and then very likely come back home because I was going to apply for O-1,
+[439.40s - 446.16s] Anushka: but then the whole catalyst thing happened so it wouldn't make sense to apply for O-1 visa with catalysts and things like that.
+[446.18s - 454.98s] Anushka: So my plan with the visa was to come back, considering there won't be a follow-on,
+[455.14s - 459.40s] Anushka: very likely, to come back to India and then work towards the O-1 from here.
+[461.52s - 461.80s] Anushka: Okay.
+[464.86s - 467.82s] Anushka: So I can't work as a consultant while I'm in the U.S.
+[467.82s - 473.86s] Anushka: I can go as a consultant once I'm back here and I'm sitting in India because then, I mean, then...
+[473.86s - 474.66s] Wafaa: Yeah, yeah.
+[475.32s - 476.16s] Anushka: But yeah.
+[476.18s - 479.86s] Anushka: you'll be essentially hiring like an Indian consultant, I know, think.
+[480.58s - 485.66s] Anushka: So if you want me to work in the U.S., you will have to hire me full-time, kind of, like,
+[485.66s - 493.00s] Anushka: like, minimum, like, part-time or full-time, like minimum 20 hours is kind of legally required.
+[494.18s - 499.60s] Wafaa: And then in this case, you need to get an H-1B, right?
+[502.22s - 502.74s] Anushka: Yes.
+[502.74s - 506.16s] Anushka: But there are ways to get an H-1B.
+[506.18s - 514.06s] Anushka: So there are, because the lottery system, I mean, there is another lottery in October.
+[514.26s - 516.92s] Anushka: I'm not relying on the lottery system, a whole lot.
+[518.00s - 525.12s] Anushka: My, the other thing that can happen is go for an O-1 with another company only.
+[525.64s - 529.34s] Anushka: Like, instead of going with catalysts, because I've been building my profile.
+[530.68s - 533.22s] Anushka: Go for an O1 visa with another company.
+[534.22s - 535.22s] Anushka: Like, whichever.
+[536.18s - 542.46s] Anushka: company I joined, which is, I mean, it wouldn't be that big of a change.
+[542.58s - 546.94s] Anushka: It's just some small, small things that you have to modify.
+[548.24s - 555.24s] Anushka: Essentially, especially if I stay in like a similar tech fee kind of thing, you can argue, you know,
+[555.74s - 557.62s] Anushka: kind of use cases.
+[558.06s - 564.62s] Anushka: Then there are other, well, there are, there is another way to get in H-1B.
+[564.62s - 569.58s] Anushka: it's called like a cap exempt H-1B.
+[570.26s - 570.58s] Anushka: Yes.
+[570.72s - 573.72s] Anushka: And that works better with non-profits.
+[574.74s - 582.02s] Anushka: But you have to go through, like, it has to be a nonprofit that is associated with the research organization.
+[583.14s - 586.14s] Anushka: So it's pretty much something like a university kind of.
+[586.14s - 586.86s] Anushka: Yeah, yeah.
+[586.86s - 591.14s] Anushka: And then there are where nonprofits can do that and think of it.
+[591.14s - 594.46s] Anushka: But yeah, it goes a little bit to agree.
+[594.62s - 595.90s] Wafaa: Oh, my God.
+[595.90s - 599.38s] Anushka: And that's great, yeah, but like, people have done it before.
+[600.24s - 602.00s] Anushka: And I know people who have done it before.
+[602.12s - 605.44s] Anushka: I know people who run programs that allow you to do it before.
+[606.44s - 606.64s] Anushka: Yeah.
+[606.80s - 611.36s] Anushka: It's just you need a whole lot of willingness from the company that is hiring.
+[612.58s - 617.66s] Anushka: Like, you know, you go through the journey to be kind of thing.
+[618.44s - 618.74s] Wafaa: Yeah.
+[620.94s - 622.34s] Wafaa: So what's your goal?
+[622.34s - 624.42s] Wafaa: Like, are you planning to stay in the U.S.?
+[624.42s - 627.12s] Wafaa: Or are you planning to go back to India?
+[627.24s - 628.80s] Wafaa: Like, what's your ideal scenario?
+[630.38s - 637.32s] Anushka: My ideal scenario, genuinely, because of all the uncertainty and things like that,
+[637.92s - 642.48s] Anushka: it's more and more looking like coming back to India.
+[643.08s - 648.12s] Anushka: Because, I mean, that was my plan anyways in like five to six years.
+[648.68s - 654.26s] Anushka: But now, especially the family situation and I mean, I think,
+[654.42s - 655.96s] Anushka: me being in the U.S.
+[655.96s - 658.24s] Anushka: It's more anxiety for everyone here.
+[658.66s - 663.76s] Anushka: So the plan was that after September, come back to India,
+[664.28s - 666.84s] Anushka: at least for the next year, two years.
+[667.24s - 669.80s] Anushka: And then make trips to the U.S.
+[669.84s - 672.08s] Anushka: if need, if need be, like, you know.
+[672.54s - 673.06s] Anushka: Okay.
+[673.36s - 673.60s] Anushka: Yeah.
+[673.72s - 676.12s] Anushka: Have to keep going and things like that.
+[676.20s - 679.26s] Anushka: Because getting a B1 visa is not that hard.
+[679.38s - 680.16s] Anushka: That is possible.
+[680.98s - 683.02s] Anushka: But I didn't work from India.
+[683.92s - 684.40s] Wafaa: Okay.
+[684.42s - 688.18s] Wafaa: Okay, yeah, I think that's, yeah, it seems like things are, yeah, okay.
+[688.52s - 693.66s] Wafaa: So then what you're saying, like, starting September, you can work remotely from India.
+[694.10s - 700.28s] Wafaa: But before September, like, if you come to the U.S. May, June, July, August, for the last four months,
+[700.34s - 701.86s] Wafaa: you won't be able to do work here.
+[702.78s - 703.06s] Wafaa: No.
+[704.74s - 707.18s] Anushka: I won't be able to work as a consultant there, no.
+[708.10s - 708.98s] Wafaa: But can they work?
+[709.50s - 711.62s] Wafaa: What's the other status you can work?
+[711.62s - 714.02s] Wafaa: I can work part-time?
+[714.42s - 715.48s] Anushka: I can work part time.
+[715.82s - 720.36s] Anushka: So if you're, yeah, yeah, 20 hours a week, I can work.
+[721.20s - 721.76s] Wafaa: Ah, okay.
+[722.04s - 723.40s] Wafaa: So you can do 20 hours a week.
+[723.70s - 723.90s] Wafaa: Okay.
+[724.24s - 724.82s] Anushka: So let me.
+[724.82s - 727.06s] Anushka: 20 or even 40 hours a week, but yeah.
+[727.26s - 727.50s] Wafaa: Yeah.
+[727.86s - 731.66s] Wafaa: And what would you say your skills, like, do you do back end?
+[731.74s - 734.02s] Wafaa: Like, what's what, where are your skills at?
+[734.04s - 737.44s] Wafaa: Because I'm not doing like, yeah, go ahead.
+[737.80s - 740.92s] Anushka: My strength is back end software.
+[742.04s - 744.40s] Anushka: I can do front and software with be.
+[744.42s - 750.98s] Anushka: AI tools, but my general strength is more backend software with, well, various
+[750.98s - 758.84s] Anushka: different languages, but highest strength is with languages like Python and C, then come languages
+[758.84s - 762.24s] Anushka: like Java and, what do you say?
+[763.36s - 767.50s] Anushka: Well, I have never actually worked in a production application on Ruby, so I'm not going to
+[767.50s - 770.92s] Anushka: say Ruby, but like Java spirit and things like that, which comes secondary.
+[771.78s - 774.40s] Anushka: I can handle architecture well.
+[774.42s - 785.32s] Anushka: Like, essentially with Beth and a lot of these is like, I was trying to figure out how to take a lovable project out and create ways to scale it.
+[785.92s - 786.16s] Anushka: You know?
+[786.24s - 791.72s] Anushka: Yes, how do you take that infrastructure out of these tools?
+[792.34s - 793.22s] Anushka: So things like that.
+[793.32s - 794.16s] Anushka: That I can do.
+[795.48s - 797.34s] Anushka: Frontend along with AI, I can do.
+[798.66s - 799.64s] Anushka: What else?
+[800.48s - 803.24s] Wafaa: And are you using AI agents to help you with coding?
+[803.24s - 811.54s] Wafaa: Like? Yeah. Okay. So, okay. So I want to, so let me, this is very good to know. So I'm actually
+[811.54s - 816.14s] Wafaa: going to share with you just like this is like the project, the prototype project that I'm working. This is for
+[816.14s - 822.54s] Wafaa: my consulting that I'm doing. But once we do that consulting, once I'm actually happy with the prototype
+[822.54s - 826.48s] Wafaa: and get feedback, I think that's then this is going to be like going to production.
+[827.52s - 832.60s] Wafaa: Yeah. So right now it's not ready to build anything. I'm still working with the founders to,
+[832.60s - 840.26s] Wafaa: But they asked me, like, do I want to keep involved in the production stuff, which I would love to stick in, just like I learn a lot.
+[840.72s - 841.96s] Wafaa: So that's one thing.
+[842.52s - 851.22s] Wafaa: The other project is for my, for my, for my, for the organization I'm working with right now.
+[851.32s - 856.38s] Wafaa: Like, that's also something that I would know more in the next two months as well.
+[856.38s - 862.58s] Wafaa: Like, it's not something already, like, I'm still collecting feedback. Things move very slow, but I'll share that.
+[862.60s - 867.48s] Wafaa: with you. And then in terms of like payment and cost, like, what's, what's your average?
+[867.68s - 871.90s] Wafaa: Like, how do you charge people? I'm still figuring this out. So like, yeah, yeah,
+[871.94s - 876.14s] Wafaa: have an answer. It's fine, but we can figure. You're talking about like consulting wise or
+[876.14s - 883.72s] Wafaa: or not consulting ways? So let's say part time because you, you need a bar time between like,
+[884.02s - 889.84s] Wafaa: ideally, like if we started in May and May, June, July, August, like part time. And then if you go to
+[889.84s - 896.82s] Wafaa: India, then we can decide that if you want to do a full time for the non-profit. And like with the
+[896.82s - 901.38s] Wafaa: nonprofit, I can do the nonprofit work, but also I can do consulting work. So we can figure this out
+[901.38s - 909.46s] Anushka: once it's done. Yeah, what is done. Yeah. I don't have a high bar for this thing. Even if you can just
+[909.46s - 916.90s] Anushka: cover like living expenses and all that is the same. Somewhere, I mean, that comes out to be, I think,
+[916.90s - 929.08s] Anushka: for part-time, it comes out to be some $20 or $25 an hour or something like that.
+[929.52s - 930.08s] Anushka: How much?
+[931.14s - 935.04s] Anushka: $20 or $25 an hour if we're doing part-time.
+[935.84s - 936.12s] Anushka: Okay.
+[936.24s - 938.12s] Wafaa: Anushka, $25?
+[939.40s - 939.94s] Wafaa: Yeah.
+[940.08s - 940.30s] Wafaa: Okay.
+[940.30s - 941.24s] Wafaa: Listen to me.
+[941.42s - 942.14s] Wafaa: This is too low.
+[942.90s - 943.94s] Wafaa: Yeah, I know.
+[944.14s - 944.50s] Wafaa: I know.
+[944.84s - 945.78s] Wafaa: Like, this is too low.
+[945.78s - 947.48s] Wafaa: People might not take you seriously.
+[947.74s - 951.38s] Wafaa: And I'm saying, I'm telling you this because I know that you're so fucking professional.
+[951.64s - 953.00s] Wafaa: And this is, this is too low.
+[953.06s - 954.10s] Wafaa: You should not charge that.
+[954.22s - 955.88s] Wafaa: Even for you, you should not charge me this.
+[958.22s - 959.52s] Anushka: No, I was giving you
+[959.52s - 962.20s] Anushka: friends and family discounts.
+[962.26s - 962.42s] Anushka: Yeah.
+[962.90s - 964.58s] Wafaa: Look, listen to me.
+[964.64s - 967.06s] Wafaa: Do not give this friends or family rate to anyone.
+[969.30s - 970.16s] Anushka: No, that's.
+[970.16s - 973.40s] Anushka: I also was trans, I think Indian rates to U.S., but yeah.
+[974.12s - 975.36s] Wafaa: No, I'm, I'm, I'm, actually.
+[975.36s - 980.52s] Anushka: Literally, how much, I ended up charging my client here for one month.
+[980.88s - 983.76s] Wafaa: I think it's different, different in India versus the U.S.
+[983.80s - 987.36s] Wafaa: But I think we can work, like, you're flexible under a price range.
+[987.42s - 991.42s] Wafaa: So we can figure something out where we, we make something work.
+[991.64s - 995.64s] Wafaa: I want you to be happy and I want you to get compensated right in the right way.
+[995.64s - 998.18s] Wafaa: So, yeah.
+[999.18s - 999.42s] Wafaa: Okay.
+[1000.02s - 1002.92s] Wafaa: So let me, I'll have to have me at the price.
+[1003.14s - 1005.34s] Anushka: I don't know where in the U.S.
+[1005.36s - 1011.44s] Wafaa: consulting rates for. Yeah. No, do that $25 people are going to be like she's not going to do anything,
+[1012.20s - 1019.68s] Wafaa: which I know this is not true. This is why I'm like, no, don't do that. Okay. So let me,
+[1021.84s - 1027.18s] Wafaa: do don't do any work. Nothing. Let me just, I'm going to just share with you what I've been tinkering
+[1027.18s - 1034.32s] Wafaa: with. Like this is just a prototype. So just you know that and nothing has developed yet. And I'm just,
+[1034.32s - 1042.92s] Wafaa: I'm just like still collecting feedback, making sure the workflow is good, that, and then I'm going to go into the architecture and figure out, like, what do I need to build, etc.
+[1043.28s - 1049.52s] Wafaa: So I think, like, before I do the architecture work, I mean, we need to sign contact with, especially with the non-profit.
+[1049.52s - 1059.12s] Wafaa: I will, I will figure out like a way, so we can figure them, you can figure out like all the way to everything.
+[1059.26s - 1063.94s] Wafaa: But I just want to, like, touch with you, see how are you doing and see what you would be interested in doing.
+[1064.32s - 1074.24s] Wafaa: Also, like, again, as I'm getting consulting, like, I'm trying to, like, do more consulting work, and I'm like, I want to take things into production, and I've been practicing that.
+[1074.28s - 1077.74s] Wafaa: So I want to, like, see what I built.
+[1079.22s - 1084.92s] Wafaa: I'm going to be very proud of me because I am becoming, like, a whole.
+[1087.04s - 1090.96s] Wafaa: Yes, and I love it. See, I deployed the other day, an app.
+[1092.58s - 1094.14s] Wafaa: So this is, this is an app.
+[1094.32s - 1119.28s] Wafaa: I built and it's fully in productions. Where are you? One second. One second.
+[1124.32s - 1136.42s] Wafaa: So basically, this is an app I built for myself to train for, so I have a triathlon coming up in June.
+[1137.36s - 1138.42s] Anushka: Oh, nice.
+[1138.76s - 1145.00s] Wafaa: So I basically created that. So it's like every week, it gives me, every day, it gives me a plan of what things I need to work on.
+[1145.72s - 1151.96s] Wafaa: It gives me my check-in. I can do like, okay, this is what I did today. And then here's, like, my history.
+[1151.96s - 1158.00s] Wafaa: here's my AI coach that can't, like, talk to me, et cetera. And then here's my dashboard.
+[1158.14s - 1163.00s] Wafaa: So it shows me, like, where I am in my process, what I've done this week, which I haven't done anything.
+[1163.24s - 1167.30s] Wafaa: But it's like a very more, more, like, a customized experience.
+[1168.26s - 1177.80s] Wafaa: Yeah. And I built this fully on my own. So, like, I built, like, I did the front, front end using
+[1177.80s - 1181.94s] Wafaa: lovable. And then I deploy everything into cloud code. And I just build it.
+[1181.96s - 1183.66s] Wafaa: it and I deployed it into Versal.
+[1184.72s - 1185.52s] Anushka: Oh, wow.
+[1186.20s - 1186.52s] Anushka: Yeah.
+[1187.40s - 1191.96s] Wafaa: Yes. And the other project that I'm, this is like the consulting project.
+[1191.96s - 1195.08s] Wafaa: So it's basically a platform for women to invest.
+[1196.36s - 1196.68s] Anushka: Yeah.
+[1197.72s - 1204.84s] Wafaa: So this is like more about like the workflow. I'm still working with them, the workflow, but let me show you like
+[1206.84s - 1211.64s] Wafaa: the dashboard. So this is like more the dashboard. So this is like more the dashboard. Like, so after you do the
+[1211.64s - 1217.08s] Wafaa: onboarding process. You can like have three type of investment. And it's like a dashboard where
+[1217.08s - 1222.52s] Wafaa: people like can check their companies say if they are interested in investing and then we will do like
+[1222.52s - 1231.48s] Wafaa: back end to other things. So like event circles, etc. So like that's one thing. And then this is for the
+[1231.48s - 1236.68s] Wafaa: consulting project that I'm working on. And there's another like my company's project that I'm
+[1236.68s - 1241.62s] Wafaa: working on. Let me show you that too quickly. So this is for people who
+[1241.64s - 1243.32s] Wafaa: who are looking for a job.
+[1256.36s - 1258.92s] Wafaa: This is mainly for people who are looking for jobs.
+[1258.92s - 1264.60s] Wafaa: So I basically just created them. So I have like different, I have four different person.
+[1264.60s - 1271.48s] Wafaa: So you have job seeker, coach, volunteer and employer. And then I have like the admin stuff that'll show you just like the
+[1271.48s - 1279.76s] Wafaa: job seeker dashboard. So this is the job seeker dashboard. So there's like, I have like
+[1279.76s - 1285.92s] Wafaa: three AI agent that will be talking to each other. And I have here like what's the journey look like
+[1285.92s - 1293.16s] Wafaa: and Breb Hub. So I have resume agent, AI agent. And then I have AI interview practice agent. So like,
+[1293.16s - 1298.68s] Wafaa: you can go and practice with 11 lab. And then you have connect with a volunteer real human.
+[1298.68s - 1308.92s] Wafaa: job trackers, learning, events, connect, and coaching, etc. So like, that's the type of
+[1308.92s - 1314.12s] Wafaa: project I'm doing. It's nothing like too complicated. Like for, for this one, I think what's maybe
+[1314.12s - 1319.00s] Wafaa: more a little bit complicated is like I have three different agents and they have a main master agent,
+[1319.00s - 1327.96s] Wafaa: the coach. And then I have resume agent and I have an interview agent. And this two, they need to keep
+[1327.96s - 1334.26s] Wafaa: report back to the master agent to be like, oh, Wafa work today on ABC. She was good. She was bad.
+[1334.26s - 1340.72s] Wafaa: that of that. So it's like, yeah. So like I think these things like I'm I'm playing right now with the
+[1340.72s - 1346.90s] Wafaa: resume and the interview agent. We're doing some testing to make sure that they, they sound like us. But
+[1346.90s - 1354.16s] Wafaa: I think this is when it comes to scalability. Like how do we do that? Yeah. Yeah. Yeah. I think
+[1354.16s - 1383.94s] Wafaa: Basically where I am. Yeah. No, it's very interesting. Three very different times of projects. Yeah. You know? So this is like a two type of project that I have. So let me, yeah, this is good to know that you're interested. I am very interested and I, like, I know best love working with you and I love working with you as well. So like, let me, let me figure out the next steps and I'll get back to you.
+[1384.16s - 1391.68s] Anushka: have any questions or anything? Not right now, no. I will look into the company, the globally,
+[1392.24s - 1398.36s] Anushka: the upwardly global company. Yeah, the one that we shared. Um, because yeah, because I have not
+[1398.36s - 1404.28s] Wafaa: part of them. Which is interesting. Yeah. It's like it's a nonprofit organization. They do good work.
+[1405.32s - 1414.14s] Anushka: God. Yeah. Okay. Yeah. Anyways, I will read up a little bit about them when you go and talk to
+[1414.16s - 1423.36s] Wafaa: read about them and let me know if you have any question. And then we can, um, let me figure out some stuff like just now in the next few weeks and I will keep get back to you.
+[1424.56s - 1443.76s] Wafaa: Yep. Yeah. How are you doing otherwise? I'm doing well. I'm honestly very busy with, uh, was like these two jobs. And I think it's very interesting. Like I'm just really learning a lot because it's like, um, yeah, I'm learning and I'm actually preparing for them. My triathlon.
+[1444.16s - 1446.72s] Wafaa: in, um, in June.
+[1448.72s - 1450.64s] Wafaa: Zaya, there's nothing, nothing to come in.
+[1451.60s - 1459.52s] Wafaa: Yeah. And I'm actually going to see Cecilia on Thursday.
+[1460.40s - 1466.00s] Anushka: Oh, nice. I have to catch up with her. Yeah. Yeah. Yeah. Yeah. Yeah. So that would be nice.
+[1466.00s - 1471.84s] Wafaa: And yeah, I think that's basically where we are. Say hi to her from my side and then I haven't you
+[1471.84s - 1479.54s] Anushka: I will. I keep telling myself, okay, this week and then something comes on like, next week, next week. Next week. Next week.
+[1479.88s - 1487.32s] Wafaa: I know, especially when you're in a different time zone and stuff, it's really like, yeah, I get it. I get it.
+[1487.48s - 1493.10s] Anushka: Yeah, because I keep seeing her on Instagram and every time I see her real, I'm like, oh, I should check in on her.
+[1494.70s - 1495.40s] Anushka: I know.
+[1495.80s - 1500.36s] Anushka: It's like, oh, like, that's 3 a.m. in Boston, okay, 4 a.m. in Boston.
+[1500.84s - 1501.32s] Anushka: Exactly.
+[1501.84s - 1512.56s] Wafaa: Yeah. Yeah. No, I get it. I get it. Yeah. Okay. Let me, let me, let me get back to you in the next few weeks.
+[1513.66s - 1518.66s] Wafaa: Okay. Sounds good. Enjoy your time and let me know. Yeah, we'll chat.
+[1519.70s - 1524.76s] Anushka: Yes, I will meet you when I'm back, but until then, I'm available online.
+[1525.54s - 1528.66s] Wafaa: Did you figure out when you're coming? Did you buy your ticket or not yet?
+[1529.28s - 1531.82s] Anushka: We are just fine living the dates. So I will let you know.
+[1531.84s - 1534.50s] Wafaa: that is good. Yes, give me boosted, yeah. Okay, awesome.
+[1535.22s - 1537.10s] Wafaa: Bye, Anushka. Bye. Bye.

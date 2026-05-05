@@ -1,57 +1,111 @@
 {
-  "total_tasks": 9,
+  "total_tasks": 18,
   "tasks": [
     {
-      "speaker": "Maureen",
-      "task_description": "Send use cases or business cases for the AI-driven model for review.",
+      "speaker": "Wafaa",
+      "task_description": "Figure out a way to work together (with the recipient/user).",
       "deadline": null,
       "priority": "High"
     },
     {
-      "speaker": "Anushka",
-      "task_description": "Send samples/write-up on the modernization process flow that was done in the last couple of weeks.",
-      "deadline": "Later this week",
+      "speaker": "Wafaa",
+      "task_description": "Discuss potential work opportunities with the recipient/user, specifically regarding the non-profit organization.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Chat with the customer to see if they are interested in doing work together.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out if they should hire someone full-time or a consultant for the non-profit organization.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Chat with the customer to discuss the opportunity and see where the customer is at.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Share the prototype project that Wafaa is working on for consulting.",
+      "deadline": "Implied: After consulting and getting feedback",
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Provide updates on the second project for the organization Wafaa is currently working with.",
+      "deadline": "Next two months",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Share information regarding payment and cost structure (how to charge people).",
+      "deadline": "Not specified",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Share updates on the organization's project (the second project mentioned).",
+      "deadline": "Next two months",
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out the appropriate payment and cost structure/rate for the collaboration.",
+      "deadline": "Not specified",
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Determine a final price/rate for the collaboration.",
+      "deadline": "Not specified",
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out a way to proceed with the non-profit contact/sign contract.",
+      "deadline": null,
+      "priority": "High"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Share the prototype/tinkering work and collect feedback on the workflow.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out the architecture and what needs to be built for the consulting project.",
+      "deadline": null,
+      "priority": "Medium"
+    },
+    {
+      "speaker": "Wafaa",
+      "task_description": "Figure out the next steps and get back to Anushka.",
+      "deadline": "The next few weeks",
       "priority": "High"
     },
     {
       "speaker": "Anushka",
-      "task_description": "Send a little bit of a write-up on what they have done.",
+      "task_description": "Look into the company, the globally upwardly global company.",
       "deadline": null,
       "priority": "Medium"
     },
     {
       "speaker": "Anushka",
-      "task_description": "Send a write-up on what they have done (regarding the modernization process).",
+      "task_description": "Read up about the nonprofit organization (the company discussed).",
       "deadline": null,
       "priority": "Medium"
     },
     {
-      "speaker": "Maureen",
-      "task_description": "Share the information received with her team and reach out if it is applicable.",
-      "deadline": null,
-      "priority": "Medium"
-    },
-    {
-      "speaker": "Anushka",
-      "task_description": "Send the case study that is being written up for a healthcare system.",
-      "deadline": null,
-      "priority": "High"
-    },
-    {
-      "speaker": "Anushka",
-      "task_description": "Send the information for the case study (specifically mentioning it's an insurance calculator) in the next two days.",
-      "deadline": "next two days",
-      "priority": "High"
-    },
-    {
-      "speaker": "Anushka",
-      "task_description": "Send a one-slide summary about her company (how long they've been around, where they're based, etc.).",
-      "deadline": null,
-      "priority": "Medium"
-    },
-    {
-      "speaker": "Maureen",
-      "task_description": "Watch for the email from Anushka.",
+      "speaker": "Wafaa",
+      "task_description": "Let Anushka know if she has any questions after reading about the company.",
       "deadline": null,
       "priority": "Medium"
     }
