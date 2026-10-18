@@ -1,7 +1,7 @@
 .hidden 
 .DS_Store
 
-test-recordings/
+# test-recordings/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
